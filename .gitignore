@@ -1,0 +1,10 @@
+*
+
+!/materials/
+!/materials/*.pdf
+
+!/texfileGF/
+!/texfileGF/*.pdf
+!/texfileGF/*.tex
+
+!/.gitignore
