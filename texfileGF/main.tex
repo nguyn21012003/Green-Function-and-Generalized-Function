@@ -1,0 +1,296 @@
+\documentclass{report}
+\usepackage[utf8]{vietnam}
+\usepackage[utf8]{inputenc}
+\usepackage{anyfontsize,fontsize}
+\changefontsize[13pt]{13pt}
+\usepackage{commath}
+\usepackage{blindtext}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{slashed}
+\usepackage{indentfirst}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+
+\usepackage{tikz-feynman}
+\usepackage{nccmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amsmath,systeme,bbold}
+\usepackage[thinc]{esdiff}
+\usepackage{hyperref}
+\usepackage{dirtytalk,bm,physics}
+\usepackage{tikz}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+%footnote
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}%
+\fancyhf{}%
+\fancyfoot[L]{Vật lý Lý thuyết}%
+\fancyfoot[C]{\hspace{4cm} \thepage}%
+
+\usetikzlibrary{shapes.geometric, arrows}
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+
+\renewcommand{\baselinestretch}{2.0}
+\usetikzlibrary{arrows.spaced}
+\usetikzlibrary{animations,quotes}
+%gian do
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered,draw=black, fill=white!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\title{\Huge{Hàm suy rộng\\Hàm Green}}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=red,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={Hàm Green},
+	pdfpagemode=FullScreen,
+}
+
+\urlstyle{same}
+\newcommand{\s}{\ast}
+
+
+\newcommand{\image}[1]{
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{pic/#1}
+	\end{center}
+}
+\renewcommand{\l}{\ell}
+\newcommand{\dps}{\displaystyle}
+
+\newcommand{\f}[2]{\dfrac{#1}{#2}}
+\newcommand{\at}[2]{\bigg\rvert_{#1}^{#2} }
+
+
+
+
+
+\begin{document}
+\setlength{\parindent}{20pt}
+\newpage
+\author{TRẦN KHÔI NGUYÊN \\ VẬT LÝ LÝ THUYẾT}
+\maketitle
+\chapter*{Preface}
+Giáo trình: Applie Functional Analasis(Griffel), Introductory Functional Analasis(Kreyzig), Equations of Mathematical Physics(Vladimirov), Mathmatical Methods (David Skinner). Có thể xem qua thêm như là Boas, Arfken \& Weber.
+\tableofcontents
+\chapter{Lý thuyết Sturm-Liouville}
+\section{Ma trận tự phó(tự liên hợp)(self-adjoint)}
+Cho hai không gian vector: $V$ và $W$
+\begin{align*}
+	V:dim             & = n                   \\
+	W:dim             & = m                   \\
+	M: V              & \rightarrow W         \\
+	\Rightarrow W=M.V & \Leftrightarrow w=M.v \\
+\end{align*}
+trong đó M: ánh xạ tuyến tính\\
+Notation cho tích trong(innner product): (a,b)
+\begin{align*}
+	\mathbf{M}_{ai} & =(\mathbf{w}_a,M\mathbf{v}_i) \\
+	                & =(w_a^T)^{\ast}Mv_i
+\end{align*}
+
+Khi $m=n$ có nghĩa là $\mathbf{M}$ là ma trận vuông $nxn$, ta có được:
+\begin{align*}
+	\lambda_i = det(\mathbf{M}-\lambda\mathbf{I}) = 0
+\end{align*}
+Một ma trận $\mathbf{M}$ được gọi là ma trận tự phó khi và chỉ khi:
+liên hợp Hermit của nó là $\mathbf{M}^\dagger \equiv (\mathbf{M^{T}})^{\ast}= \mathbf{M}$. Ta có thể định nghĩa điều này một cách gọn gàng hơn thông qua notation tích trong: với hai vector ($\mathbf{u,v}$) = $\mathbf{u^\dagger} \cdot \mathbf{v}$, khi ma trận $\mathbf{B}$ là phó của ma trận $\mathbf{A}$ nếu như:
+\begin{align}
+	(\mathbf{Bu,v}) = (\mathbf{u,Av})
+\end{align}
+bởi vì $\mathbf{Bu}^\dagger =\mathbf{u}^\dagger \mathbf{B}^\dagger $.
+\section{Các tính chất của ma trận tự phó}
+\begin{itemize}
+	\item Trị riêng của nó phải là thực.
+	\item Các vector riêng ứng với 1 trị riêng thì trực giao với tích trong.
+	\item Tạo thành cơ sở trực chuẩn.
+	\item Nến định thức $\neq$ 0 $\Rightarrow$ tồn tại ma trận nghịch đảo, và các trị riêng đều khác 0.
+\end{itemize}
+%%%%%%%%%%%%% chứng minh xem trong tập
+\section{Toán tử vi phân(Differential operators)}
+Toán tử vi phân tuyến tính $\mathcal{L}$, Đây chỉ là tổ hợp tuyến tính của các đạo hàm với các hệ số có thể trở thành hàm của $x$. $\mathcal{L}$ được gọi là toán tử vi phân tuyến tính bậc $p$ khi:
+\begin{align*}
+	\mathcal{L} = A_p(x)\dfrac{d^p}{dx^p} + A_{p-1}(x)\dfrac{d^{p-1}}{dx^{p-1}} +...+A_1(x)\dfrac{d}{dp} + A_0(x)
+\end{align*}
+Khi nó đánh lên một hàm $y(x)$(trơn). Ta có $\mathcal{L}(c_1y_1+c_2y_2)=\mathcal{L}(c_1y_1)+\mathcal{L}(c_2y_2) $\\
+Ta quan tâm đến phương trình bậc 2 $\mathcal{L}$
+\begin{align}
+	\mathcal{L}y = \left[ P(x)\dfrac{d^2}{dx^2}+ R(x)\dfrac{d}{dx} - Q(x) \right] y
+\end{align}
+* Phương trình thuần nhất:
+\begin{align*}
+	Ly(x) = 0 \rightarrow y = c_1y_1(x) + c_2y_2(x)
+\end{align*}
+trong đó $c_i$ : complementary function\\
+* Phương trình không thuần nhất:
+\begin{align*}
+	Ly(x)=f(x): y = y_c + y_p
+\end{align*}
+trong đó: $y_p$ là nghiệm riêng(particular function)\\
+* Toán tử vi phân tự phó
+\begin{align}
+	Ly(x) & = \dfrac{d}{dx}\left(p(x)\dfrac{dy}{dx}\right) - q(x)y\nonumber                       \\
+	      & = \left(\dfrac{d}{dx}p(x)\right)\dfrac{dy}{dx} + \dfrac{d^y}{dx^2}p(x)-q(x)y\nonumber \\
+	      & = p'(x)\dfrac{dy}{dx} + p(x)\dfrac{d^2y}{dx^2}-q(x)y
+\end{align}
+Đặt $p'(x) = R(x)$ $\rightarrow$ nghiệm này không tổng quát\\
+Giả sử $P(x)\neq0$
+\begin{align}
+	\dfrac{dy}{dx^2}+\dfrac{R(x)}{P(x)}\dfrac{dy}{dx} - \dfrac{Q(x)}{P(x)}y(x) \\
+	\dfrac{dy}{dx^2}+\dfrac{p'(x)}{p(x)}\dfrac{dy}{dx} - \dfrac{q(x)}{p(x)}y(x)
+\end{align}
+Mối liên hệ giữa p,q và P,Q
+\[
+	\Rightarrow
+	\begin{cases}
+		q(x) = p(x)\dfrac{Q(x)}{P(x)} \\
+		\dfrac{p'(x)}{p(x)}= \dfrac{R(x)}{P(x)}\Rightarrow \displaystyle\int \dfrac{dp}{p}=\int \dfrac{R(x)}{P(x)}dx \Rightarrow ln(p) = \int \dfrac{R(x)}{P(x)} + C \Rightarrow p(x)=e^{\int_{0}^{x}\frac{R(t)}{P(t)}dt }
+	\end{cases}
+\]
+*$\mathcal{L}$ tự phó với tích trong
+\begin{align*}
+	(f,g) = \int_{a}^{b}f^{*}(x)g(x)dx
+\end{align*}
+
+Điều kiện biên
+\begin{align*}
+	(\mathcal{L}f,g) & =\int_{a}^{b}\left[\dfrac{d}{dx}\left( p(x)\dfrac{d\vec{f}}{dx} \right) - q(x)\vec{f}\right]g(x)dx                                                                            \\
+	                 & = \left. p(x)\dfrac{df^*}{dx}g(x)\right|_a^b - \int_{a}^{b}p(x)\dfrac{df^*}{dx}\dfrac{dg}{dx} - q(x)f(x)^* g(x) dx                                                            \\
+	                 & = \left. p(x)\dfrac{df^*}{dx}g(x)\right|_a^b - \left.  f^*p\dfrac{dy}{dx} \right|_a^b + \int_{a}^{b} f^*\left[ \dfrac{d}{dx}\left(p\dfrac{dg}{dx} - q(x)g(x)\right) \right]dx
+\end{align*}
+trong đó: $\displaystyle\int_{a}^{b} f^*\left[ \dfrac{d}{dx}\left(p\dfrac{dg}{dx} - q(x)g(x)\right) \right]dx = (f,\mathcal{L}g)$ và $ \left. p(x)\dfrac{df^*}{dx}g(x)\right|_a^b - \left.  f^*p\dfrac{dy}{dx} \right|_a^b = A$ \\
+Để $(\mathcal{L}f,g) (f,\mathcal{L}g) \Rightarrow A = 0 $
+
+\section{Tính chất của $\mathcal{L}$}
+\subsection{Hàm riêng và hàm trọng}
+\begin{align*}
+	\mathcal{L}y(x) = \lambda w(x)y(x)
+\end{align*}
+hàm trọng $w(x)$ là hàm trọng và phải là thực.
+\begin{align*}
+	(f,g)_w \equiv \int_{a}^{b}f^*gw(x)dx
+\end{align*}
+tại vì $w$ là thực nên ta có tính chất:
+\begin{align*}
+	(f,g)_w = (f,wg) = (wf,g)
+\end{align*}
+Tính tuyến tính và phản tuyến tính:
+\begin{align*}
+	(f;c_1g_1+c_2g_2)_w = c_1(f,g_1) + c_2(f,g_2) \\
+	(c_1f_1+c_2f_2;g)_w = c_1^*(f_1,g) + c_2(f_2,g)
+\end{align*}
+*Hàm riêng: trực giao với mỗi $\lambda$
+\begin{align*}
+	\int_{a}^{b}Y_m^*(x)Y_n(x)w dx = \delta_{m,n}
+\end{align*}
+*Hàm cơ sở trực giao
+\begin{align*}
+	f(x) & = \sum_{n=1}^{\infty}f_nY_n(x)         \\
+	     & =\sum_{n=1}^{\infty} \int Y_m^* f(x) w \\
+	     & =f_m(x) \delta_{m,n}
+\end{align*}
+Ex: Giải phương trình vi phân $\mathcal{L}y(x) = f(x)$
+\begin{align*}
+	\mathcal{L} \sum_{n}y_n Y_N & = \sum_{n}y_n\lambda_n = \sum_{n}y_n\lambda_nY_n         \\
+	                            & = \sum_{n}f_n Y_n \rightarrow y_n \dfrac{f_n}{\lambda_n}
+\end{align*}
+\newpage
+Buổi 2 : Lý thuyết Sturm–Liouville(continue)\\
+$\s$Giải phương trình ma trận $Mu = \vec{f} \Rightarrow M^{-1}M u = M^{-1}\vec{f} \Rightarrow u = M^{-1}\vec{f} $\\
+$\s$Toán tử của phương trình không thuần nhất:
+\begin{align*}
+	\mathcal{L}y(x) = f(x)
+\end{align*}
+$\mathcal{L}$ : Toán tử vi phân tuyến tính.\\
+Ta không giản được phương trình trên như ma trận bằng cách tìm hàm riêng trị riêng.
+
+\textbf{Cách 1: Giải phương trình vi phân thuần nhất}
+\begin{align*}
+	\mathcal{L}y(x) = 0.
+\end{align*}
+Giải phương trình trên tìm ra được $y_{com} \rightarrow y(x) = y_{com} + y_p$
+
+\textbf{Cách 2:}
+\begin{align*}
+	\mathcal{L}y(x) = \f{d}{dx}\left(p(x)\f{dy}{dx}\right) - q(x)y.
+\end{align*}
+$\mathcal{L}$ là tự phó với tích trong $(f,g) = \dps\int f^{\s}(x) g(x) dx$
+\begin{align*}
+	\left(f,\mathcal{L}g\right) = \left(\mathcal{L}f,g\right).
+\end{align*}
+\textbf{Bước 1: Tìm hàm riêng trị riêng}
+\begin{align*}
+	\mathcal{L}y(x) = \lambda w(x)g(x),
+\end{align*}
+và đồng thời thay $\mathcal{L}y \rightarrow \f{1}{\sqrt{w(x)}} \mathcal{L}(\f{\tilde{y}}{\sqrt{w(x)}})$
+\begin{align*}
+	 & \mathcal{L}\left(\f{\tilde{y}}{\sqrt{w(x)}}\right) = \lambda w(x) \f{\tilde{y}}{\sqrt{w(x)}} = \sqrt{w(x)}\lambda\tilde{y} \\
+	 & \Rightarrow \f{1}{\sqrt{w(x)}}\mathcal{L}\left(\f{\tilde{y}}{\sqrt{w(x)}}\right) = \lambda \tilde{y}.
+\end{align*}
+\textit{\textbf{Tích trong của hàm trọng}}
+\begin{align*}
+	\begin{cases}
+		(f,g)_w & = \int f^{\s} g w(x)dx = (f,gw) = (wf,g) .\\
+		(f,f)_w & = 0 \rightarrow f = 0;w \neq 0  .
+	\end{cases}
+\end{align*}
+\textit{ \textbf{Tính chất của toán tử Sturm-Liouville}}\\
+Nếu:
+\begin{align*}
+	\mathcal{L} y_i = \lambda w y_i(x),
+	\begin{cases}
+		\lambda:\;\text{thực}. \\
+		\left(y_i,y_j\right)_w = 0\;\text{khi}\; \lambda_i \neq \lambda_j. \\
+	\end{cases}
+\end{align*}
+Và
+\begin{align*}
+	Y_i = \f{y_i}{(\sqrt{y_i y_i})_w},
+\end{align*}
+là tập các hàm riêng trực giao và tuyến tính $\rightarrow$ đầy đủ.
+
+\textbf{Bước 2$\s$:}
+\begin{align*}
+	f(x) = \sum_{i} f_i Y_i(x)
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
