@@ -264,21 +264,52 @@ là tập các hàm riêng trực giao và tuyến tính $\rightarrow$ đầy đ
 
 \textbf{Bước 2$\s$:}
 \begin{align*}
-	f(x) = \sum_{i} f_i Y_i(x)
+	f(x) &= \sum_{i} f_i Y_i(x)\\
+	f_i &= (Y_i f(x))_w
 \end{align*}
 
+\textbf{Bước 2:}
+\begin{align*}
+	\mathcal{L} \phi(x) = w(x) F(x)\\
+	\begin{cases}
+		\phi(x) & = \dps\sum_{i}\phi_i Y_i(x)\\
+		F(x) & = \dps\sum_{i}F_i Y_i(x)
+	\end{cases}
+\end{align*}
 
+\textbf{Bước 3:}
+\begin{align*}
+	\Rightarrow \mathcal{L}\sum_i \phi_i Y_i(x) &= w\sum_{i}F_i Y_i(x) \\ 
+	\rightarrow \sum_{i} \underbracket{\phi_i \mathcal{L} Y_i(x)}_{\lambda_i w(x)Y_i(x)} &= \sum_{i} F_i w(x) Y_i(x)  \\
+	\rightarrow \sum_{i}\left( \phi_i \lambda_i - F_i \right)w(x) Y_i(x) &= 0 \rightarrow \phi = \f{F_i}{\lambda_i}
+\end{align*}
+\begin{align*}
+	\phi_p (x) = \sum_{i} \f{F_i}{\lambda_i} Y_i(x) \; \text{nghiệm đặc biệt},
+\end{align*}
+nghiệm tổng quát cho $\phi$:
+\begin{align*}
+	\phi = \phi_c(c) + \phi_p(x) \; \text{đây chính là nghiệm cho phương trình} \; \mathcal{L}\phi_i = 0.
+\end{align*}
 
-
-
-
-
-
-
-
-
-
-
+\textbf{Nghiệm đặc biệt}
+\begin{align*}
+	\phi_p(x) &= \sum_{i} \f{1}{\lambda_i}\left( Y_i(t), F(t) \right)_w Y_i(x) \\
+	& = \sum_{i} \f{1}{\lambda_i} Y_i(x) \int_{a}^{b} Y^{\ast}_{i}(t) F(t)w(x)dt \\
+	& = \int_{a}^{b} \left[ \sum_{i} \f{1}{\lambda_i} Y^{}_{i}(x) Y^{\ast}_{i}(t) \right]w(t)F(t)dt \\
+	& = \int_{a}^{b} G(x,t)f(t)dt
+\end{align*}
+trong đó: $G$ là hàm Green (với 2 biến $\neq$ nhau: $x$ và $t$ và chia cho trị riêng).\\
+f(t): ngoại lực
+$\begin{cases}
+	\text{Bài toán dao động.}\\
+	\text{Forcing function.}
+\end{cases}$\\
+Hàm Green cho nghịch đảo hình thức.
+\section{Đồng nhất thức Parseval}
+\begin{align*}
+	(F,F)_w  &= \int \sum_{i} F^{\ast}_i Y^{}_i \sum_{j} F_j Y_j w dx \\
+	& = \sum_{i,j} F^{\ast}_i F_j
+\end{align*}
 
 
 
