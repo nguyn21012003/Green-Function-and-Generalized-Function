@@ -13,7 +13,7 @@
 \usepackage{pdfpages}
 \usepackage{graphicx}
 
-\usepackage{tikz-feynman}
+
 \usepackage{nccmath}
 \usepackage{mathtools}
 \usepackage{amsfonts}
@@ -31,7 +31,7 @@
 \fancyfoot[L]{Vật lý Lý thuyết}%
 \fancyfoot[C]{\hspace{4cm} \thepage}%
 
-\usetikzlibrary{shapes.geometric, arrows}
+
 
 \usepackage{geometry}
 \geometry{
@@ -41,12 +41,7 @@
 	top=20mm,
 }
 
-\renewcommand{\baselinestretch}{2.0}
-\usetikzlibrary{arrows.spaced}
-\usetikzlibrary{animations,quotes}
-%gian do
-\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered,draw=black, fill=white!30]
-\tikzstyle{arrow} = [thick,->,>=stealth]
+
 
 \title{\Huge{Hàm suy rộng\\Hàm Green}}
 
@@ -308,7 +303,7 @@ Hàm Green cho nghịch đảo hình thức.
 \section{Đồng nhất thức Parseval}
 \begin{align*}
 	(F,F)_w  &= \int \sum_{i} F^{\ast}_i Y^{}_i \sum_{j} F_j Y_j w dx \\
-	& = \sum_{i,j} F^{\ast}_i F_j
+	& =\sum_{i,j} F^{\ast}_i F_j \underbracket{(Y_i,Y_j)_w}_{\delta_{i,j}} = \sum_{i}^{}\abs{F_i}^2
 \end{align*}
 
 
