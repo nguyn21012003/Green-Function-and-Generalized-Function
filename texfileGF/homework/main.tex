@@ -8,12 +8,10 @@
 \usepackage{parskip}
 \usepackage{xcolor}
 \usepackage{amssymb}
-\usepackage{slashed}
+\usepackage{slashed,cancel}
 \usepackage{indentfirst}
 \usepackage{pdfpages}
 \usepackage{graphicx}
-
-
 \usepackage{nccmath}
 \usepackage{mathtools}
 \usepackage{amsfonts}
@@ -65,7 +63,7 @@
 }
 \renewcommand{\l}{\ell}
 \newcommand{\dps}{\displaystyle}
-
+\newcommand\Ccancel[2][black]{\renewcommand\CancelColor{\color{#1}}\cancel{#2}}
 \newcommand{\f}[2]{\dfrac{#1}{#2}}
 \newcommand{\at}[2]{\bigg\rvert_{#1}^{#2} }
 \begin{document}
@@ -74,82 +72,147 @@
 \author{TRẦN KHÔI NGUYÊN \\ VẬT LÝ LÝ THUYẾT}
 \maketitle
 
-\textbf{Problem 3.4}: $\mathcal{L}y = y'' - \lambda^2 y = f(x)$. 
+\textbf{Problem 3.4}: $\mathcal{L}y = y'' - \lambda^2 y = f(x)$.
 $
-\begin{cases}
-	y(0) = 0 \\
-	y(1) = 0 \\
-\end{cases}.
+	\begin{cases}
+		y(0) = 0 \\
+		y(1) = 0 \\
+	\end{cases}.
 $
 
 Giải:
 Phương trình thuần nhất:
 \begin{align*}
-	&y'' - \lambda^2 y = 0 \\
-	\Rightarrow &y'' = \lambda^2 y.
+	            & y'' - \lambda^2 y = 0 \\
+	\Rightarrow & y'' = \lambda^2 y.
 \end{align*}
 Nghiệm tổng quát có dạng:
 \begin{align}
-	y_1 &= A \cosh (\lambda x) + B \sinh (\lambda x).\\
-	y_2 &= A \cosh (1-\lambda x) + B \sinh (1-\lambda x).
+	y_1 & = A \cosh (\lambda x) + B \sinh (\lambda x).     \\
+	y_2 & = A \cosh (1-\lambda x) + B \sinh (1-\lambda x).
 \end{align}
 Áp dụng	điều kiện biên cho (1):
 \begin{align*}
 	\begin{cases}
-		y_1(0) &= A \cosh (0) + B \sinh (0) = 0 \Rightarrow A = 0, \\
-		y_2(1) &= B \sinh (1-\lambda ) = 0 \Rightarrow \sinh (1-\lambda ) = 0 \Rightarrow \lambda = 1,
+		y_1(0) & = A \cosh (0) + B \sinh (0) = 0 \Rightarrow A = 0,                                     \\
+		y_2(1) & = B \sinh (1-\lambda ) = 0 \Rightarrow \sinh (1-\lambda ) = 0 \Rightarrow \lambda = 1,
 	\end{cases}
 \end{align*}
 \begin{align}
 	\Rightarrow
 	\begin{cases}
-		y_1 &= \sinh (x)\\
-		y_2 &= \sinh (1-x).
+		y_1 & = \sinh (x)    \\
+		y_2 & = \sinh (1-x).
 	\end{cases}
-\end{align}	
-$Wronskian$ của $y_1$ và $y_2$: 
+\end{align}
+$Wronskian$ của $y_1$ và $y_2$:
 \begin{align*}
 	\renewcommand{\arraystretch}{1.5}
 	\begin{vmatrix}
-		y1 & y2 \\
+		y1  & y2  \\
 		y1' & y2'
 	\end{vmatrix}
-	&=
+	 & =
 	\begin{vmatrix}\renewcommand{\arraystretch}{2}
-		\sinh (x) & \sinh (1-x) \\
-		\cosh (x) & -\cosh (1-x) 
-	\end{vmatrix}\\
-	&= 	-\sinh (x)\cosh (1-x) - \cosh (x) \sinh (1-x)\\
-	&= 	-\sinh 1.
+		\sinh (x) & \sinh (1-x)  \\
+		\cosh (x) & -\cosh (1-x)
+	\end{vmatrix}      \\
+	 & = 	-\sinh (x)\cosh (1-x) - \cosh (x) \sinh (1-x) \\
+	 & = 	-\sinh 1.
 \end{align*}
 $\alpha(\xi) = 1$.\\
 Hàm Green có dạng:
 \begin{align}
-	G(x,\xi) &= \f{1}{\alpha(\xi) W(\xi)}\left[ \Theta(\xi - x) y_1(x) y_2(1-\xi) + \Theta(x - \xi) y_2(1-x) y_1(\xi) \right] \nonumber\\	
-	 &= -\f{1}{\sinh 1}\left[ \Theta(\xi - x) \sinh(x) \sinh(1-\xi) + \Theta(x - \xi) \sinh(1-x) \sinh(\xi) \right]	.
+	G(x,\xi) & = \f{1}{\alpha(\xi) W(\xi)}\left[ \Theta(\xi - x) y_1(x) y_2(1-\xi) + \Theta(x - \xi) y_2(1-x) y_1(\xi) \right] \nonumber \\
+	         & = -\f{1}{\sinh 1}\left[ \Theta(\xi - x) \sinh(x) \sinh(1-\xi) + \Theta(x - \xi) \sinh(1-x) \sinh(\xi) \right]	.
 \end{align}
 Nghiệm của $\mathcal{L}y = f$ là:
 \begin{align}
-	y &= \int_a^b G(x,\xi) f(\xi) d\xi \nonumber \\
-	& = y_2(x) \int_a^x \f{y_1(\xi)}{\alpha W}f(\xi) d\xi + y_1(x) \int_x^b \f{y_2(\xi)}{\alpha W}f(\xi) d\xi \nonumber \\
-	& = \sinh (1-x) \int_a^x \f{\sinh (\xi)}{\alpha W}f(\xi) d\xi + \sinh (x) \int_x^b \f{\sinh (1-\xi)}{\alpha W}f(\xi) d\xi
+	y & = \int_a^b G(x,\xi) f(\xi) d\xi \nonumber                                                                               \\
+	  & = y_2(x) \int_a^x \f{y_1(\xi)}{\alpha W}f(\xi) d\xi + y_1(x) \int_x^b \f{y_2(\xi)}{\alpha W}f(\xi) d\xi \nonumber       \\
+	  & = \sinh (1-x) \int_a^x \f{\sinh (\xi)}{\alpha W}f(\xi) d\xi + \sinh (x) \int_x^b \f{\sinh (1-\xi)}{\alpha W}f(\xi) d\xi
 \end{align}
 với $\alpha = 1, W = -\sinh 1$
 
 \textbf{Tính tích phân:} $g_n (\xi) = 2 \dps\int_{0}^{1} G(x,\xi) \sin (n\pi x) dx$. \\
-Trong đó : 
+Trong đó :
 \begin{align*}
 	G = \Theta (x-\xi) \sin \xi \cos x + \Theta (\xi - x) \cos \xi \sin x - \cot 1 \sin \xi \sin x,
 \end{align*}
 thay vô $g_n (\xi)$ ta được,
 \begin{align*}
-	RHS=2 \int_{0}^{1} \left[\Theta (x-\xi) \sin \xi \cos x + \Theta (\xi - x) \cos \xi \sin x - \cot 1 \sin \xi \sin x\right] \sin (n\pi x) dx
+	RHS & = 2 \int_{0}^{1} \left[\underbracket{\Theta (x-\xi) \sin \xi \cos x}_A + \underbracket{\Theta (\xi - x) \cos \xi \sin x}_B - \underbracket{\cot 1 \sin \xi \sin x}_C \right] \sin (n\pi x) dx \\
+\end{align*}
+$A$ term:
+\begin{align*}
+	  & \int_{0}^{1} \Theta (x-\xi) \sin \xi \cos x \sin (n\pi x) dx                                                                                                \\
+	= & \int_{\xi}^{1} \sin \xi \cos x \sin (n\pi x) dx                                                                                                             \\
+	= & \sin \xi \left[\int_{\xi}^{1} \cos x \sin (n\pi x) dx\right]                                                                                                \\
+	= & \f{\sin \xi}{2} \left[\int_{\xi}^{1} \sin [(n\pi+1)x] + \sin [(n\pi-1)x] dx\right]                                                                          \\
+	= & -\f{\sin \xi}{2} \left[ \f{\cos [(n\pi+1)x]}{n\pi+1} \at{\xi}{1} + \f{\cos [(n\pi-1)x]}{n\pi-1} \at{\xi}{1}\right]                                          \\
+	= & -\f{\sin \xi}{2} \f{\cos(n\pi+1)x - \cos(n\pi-1)x - n\pi[\cos(n\pi + 1)x + \cos(n\pi - 1)x]}{n^2\pi^2 - 1} \at{\xi}{1}                                      \\
+	= & -\f{\sin \xi}{2} \f{-2 \sin x \sin (n\pi x) - 2 n \pi \cos x \cos n\pi x}{n^2\pi^2 - 1} \at{\xi}{1}                                                         \\
+	= & \sin \xi \left[ \f{\sin 1 \sin n\pi + n \pi \cos 1 \cos n\pi}{n^2\pi^2 - 1} + \f{\sin \xi \sin n\pi\xi + n \pi \cos \xi \cos n\pi\xi}{n^2\pi^2 - 1} \right] \\
+	= & \sin \xi \left[ \f{ n \pi \cos 1 \cos n\pi}{n^2\pi^2 - 1} + \f{\sin \xi \sin n\pi\xi + n \pi \cos \xi \cos n\pi\xi}{n^2\pi^2 - 1} \right].                  \\
+\end{align*}
+$B$ term:
+\begin{align*}
+	  & \int_{0}^{1} \Theta (\xi - x) \cos \xi \sin x \sin(n\pi x) dx                                                                                                    \\
+	= & \int_{0}^{\xi} \cos \xi \sin x \sin(n\pi x) dx                                                                                                                   \\
+	= & \cos \xi \int_{0}^{\xi} \sin x \sin(n\pi x) dx                                                                                                                   \\
+	= & -\f{\cos \xi}{2} \int_{0}^{\xi} \cos\left[(n\pi+1)x\right] - \cos\left[(n\pi-1)x\right]dx                                                                        \\
+	= & -\f{\cos \xi}{2} \left[\f{\sin\left[(n\pi+1)x\right]}{n\pi+1} - \f{\sin\left[(n\pi-1)x\right]}{n\pi - 1}\right] \at{0}{\xi}                                      \\
+	= & -\f{\cos \xi}{2} \left[\f{(n\pi-1)\sin\left[(n\pi+1)x\right] - (n\pi + 1)\sin\left[(n\pi-1)x\right]}{n^2\pi^2-1}\right] \at{0}{\xi}                              \\
+	= & -\f{\cos \xi}{2} \left[ \f{-\sin [(n\pi + 1)x] - \sin[(n\pi-1)x] + n\pi\bigl[ \sin [(n\pi + 1)x] - \sin [(n\pi - 1)x] \bigr] }{n^2 \pi^2 - 1} \right]\at{0}{\xi} \\
+	= & -\f{\cos \xi}{2} \left[ \f{ -2 \sin(n\pi x)\cos x + n\pi \bigl[ 2 \cos(n\pi x)\sin x \bigr] }{n^2 \pi^2 - 1} \right] \at{0}{\xi}                                 \\
+	= & \f{\cos \xi}{2} \left[ \f{ 2 \sin(n\pi \xi)\cos \xi - n\pi \bigl[ 2 \cos(n\pi \xi)\sin \xi \bigr] }{n^2 \pi^2 - 1} \right]                                       \\
+	= & \left[ \f{ \sin(n\pi \xi)\cos^2 \xi - n\pi \cos(n\pi \xi)\sin \xi \cos \xi }{n^2 \pi^2 - 1} \right].                                                             \\
+\end{align*}
+$C$ term:
+\begin{align*}
+	 & -\int_{0}^{1} \cot 1 \sin \xi \sin x \sin (n\pi x) dx                                                                                                                           \\
+	 & = -\f{\cot 1 \sin \xi}{2} \int_{0}^{1} \cos [(n\pi + 1)]x - \cos [(n\pi - 1)]x dx                                                                                               \\
+	 & = -\f{\cot 1 \sin \xi}{2} \biggl[ \f{\sin [(n\pi + 1)]x}{n\pi + 1} - \f{\sin [(n\pi - 1)]x}{n\pi - 1} \biggr] \at{0}{1}                                                         \\
+	 & = -\f{\cot 1 \sin \xi}{2} \biggl[ \f{(n\pi - 1)\sin [(n\pi + 1)]x - (n\pi + 1) \sin [(n\pi - 1)]x}{n^2\pi^2 - 1} \biggr] \at{0}{1}                                              \\
+	 & = -\f{\cot 1 \sin \xi}{2} \biggl[ \f{ n\pi\sin [(n\pi + 1)]x - \sin [(n\pi + 1)]x - n\pi \sin [(n\pi - 1)]x  - \sin [(n\pi - 1)]x}{n^2\pi^2 - 1} \biggr] \at{0}{1}              \\
+	 & = -\f{\cot 1 \sin \xi}{2} \biggl[ \f{ - \sin [(n\pi + 1)]x - \sin [(n\pi - 1)]x - n\pi \bigl[ \sin [(n\pi + 1)]x - \sin [(n\pi - 1)]x \bigr]  }{n^2\pi^2 - 1} \biggr] \at{0}{1} \\
+	 & = -\f{\cot 1 \sin \xi}{2} \biggl[ \f{ - 2\sin n\pi x \cos x - n\pi \bigl[ 2\cos n\pi x \sin x \bigr]  }{n^2\pi^2 - 1} \biggr] \at{0}{1}                                         \\
+	 & = -{\cot 1 \sin \xi} \biggl[ \f{ - \sin n\pi x \cos x - n\pi \bigl[ \cos n\pi x \sin x \bigr]  }{n^2\pi^2 - 1} \biggr] \at{0}{1}                                                \\
+	 & = -{\cot 1 \sin \xi} \biggl[ \f{ - \sin n\pi \cos 1 - n\pi \bigl[ \cos n\pi \sin 1  \bigr] + \sin 0 \cos 0 - n\pi \bigl[ \cos 0 \sin 0  \bigr]}{n^2\pi^2 - 1} \biggr]           \\
+	 & = \biggl[\f{ n\pi\cot 1 \sin 1 \sin \xi  \cos n\pi \bigr]}{n^2\pi^2 - 1} \biggr].                                                                                               \\
+\end{align*}
+Cộng các thành phần lại ta được:
+\begin{align*}
+	g_n (\xi)
+	 & = 2 \Biggl( \sin \xi \left[ \f{ -n \pi \cos 1 \cos n\pi}{n^2\pi^2 - 1} + \f{\sin \xi \sin (n\pi\xi) + n \pi \cos \xi \cos (n\pi\xi)}{n^2\pi^2 - 1} \right]                                     \\
+	 & + \left[ \f{ \sin(n\pi \xi)\cos^2 \xi - n\pi \cos(n\pi \xi)\sin \xi \cos \xi }{n^2 \pi^2 - 1} \right] + \biggl[\f{ n\pi\cot 1 \sin 1 \sin \xi  \cos n\pi \bigr]}{n^2\pi^2 - 1} \biggr] \Biggr) \\
+	 & = \f{2}{n^2\pi^2 - 1} \Biggl( -n \pi \sin \xi \cos 1 \cos n\pi + \sin^2 \xi \sin (n\pi\xi) + n \pi \sin \xi \cos \xi \cos (n\pi\xi)                                                            \\
+	 & + \sin(n\pi \xi)\cos^2 \xi - n\pi \cos(n\pi \xi)\sin \xi \cos \xi + n\pi\cot 1 \sin 1 \sin \xi  \cos n\pi \Biggr)                                                                              \\
+	 & = \f{2}{n^2\pi^2 - 1} \Biggl( \Ccancel{-n \pi \sin \xi \cos 1 \cos n\pi} + \sin^2 \xi \sin (n\pi\xi) + \Ccancel[red]{n \pi \sin \xi \cos \xi \cos (n\pi\xi)}                                   \\
+	 & + \sin(n\pi \xi)\cos^2 \xi - \Ccancel[red]{n\pi \cos(n\pi \xi)\sin \xi \cos \xi} + \Ccancel{n\pi\cot 1 \sin 1 \sin \xi  \cos n\pi} \Biggr)                                                     \\
+	 & = \f{2\sin n \pi \xi}{n^2\pi^2 - 1} (DPCM)
 \end{align*}
 
 
 
 
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
