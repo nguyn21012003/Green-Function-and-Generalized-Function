@@ -8,7 +8,7 @@
 \usepackage{parskip}
 \usepackage{xcolor}
 \usepackage{amssymb}
-\usepackage{slashed}
+\usepackage{slashed,cancel}
 \usepackage{indentfirst}
 \usepackage{pdfpages}
 \usepackage{graphicx}
@@ -20,8 +20,8 @@
 \usepackage{amsmath,systeme,bbold}
 \usepackage[thinc]{esdiff}
 \usepackage{hyperref}
-\usepackage{dirtytalk,bm,physics}
-\usepackage{tikz}
+\usepackage{dirtytalk,bm,physics,mathrsfs,enumitem}
+
 \usepackage{lipsum}
 \usepackage{fancyhdr}
 %footnote
@@ -69,7 +69,7 @@
 \newcommand{\f}[2]{\dfrac{#1}{#2}}
 \newcommand{\at}[2]{\bigg\rvert_{#1}^{#2} }
 
-
+\renewcommand{\baselinestretch}{1.5}
 
 
 
@@ -238,7 +238,7 @@ và đồng thời thay $\mathcal{L}y \rightarrow \f{1}{\sqrt{w(x)}} \mathcal{L}
 \textit{\textbf{Tích trong của hàm trọng}}
 \begin{align*}
 	\begin{cases}
-		(f,g)_w & = \int f^{\s} g w(x)dx = (f,gw) = (wf,g) .\\
+		(f,g)_w & = \int f^{\s} g w(x)dx = (f,gw) = (wf,g) . \\
 		(f,f)_w & = 0 \rightarrow f = 0;w \neq 0  .
 	\end{cases}
 \end{align*}
@@ -247,7 +247,7 @@ Nếu:
 \begin{align*}
 	\mathcal{L} y_i = \lambda w y_i(x),
 	\begin{cases}
-		\lambda:\;\text{thực}. \\
+		\lambda:\;\text{thực}.                                             \\
 		\left(y_i,y_j\right)_w = 0\;\text{khi}\; \lambda_i \neq \lambda_j. \\
 	\end{cases}
 \end{align*}
@@ -259,24 +259,24 @@ là tập các hàm riêng trực giao và tuyến tính $\rightarrow$ đầy đ
 
 \textbf{Bước 2$\s$:}
 \begin{align*}
-	f(x) &= \sum_{i} f_i Y_i(x)\\
-	f_i &= (Y_i f(x))_w
+	f(x) & = \sum_{i} f_i Y_i(x) \\
+	f_i  & = (Y_i f(x))_w
 \end{align*}
 
 \textbf{Bước 2:}
 \begin{align*}
-	\mathcal{L} \phi(x) = w(x) F(x)\\
+	\mathcal{L} \phi(x) = w(x) F(x) \\
 	\begin{cases}
-		\phi(x) & = \dps\sum_{i}\phi_i Y_i(x)\\
-		F(x) & = \dps\sum_{i}F_i Y_i(x)
+		\phi(x) & = \dps\sum_{i}\phi_i Y_i(x) \\
+		F(x)    & = \dps\sum_{i}F_i Y_i(x)
 	\end{cases}
 \end{align*}
 
 \textbf{Bước 3:}
 \begin{align*}
-	\Rightarrow \mathcal{L}\sum_i \phi_i Y_i(x) &= w\sum_{i}F_i Y_i(x) \\ 
-	\rightarrow \sum_{i} \underbracket{\phi_i \mathcal{L} Y_i(x)}_{\lambda_i w(x)Y_i(x)} &= \sum_{i} F_i w(x) Y_i(x)  \\
-	\rightarrow \sum_{i}\left( \phi_i \lambda_i - F_i \right)w(x) Y_i(x) &= 0 \rightarrow \phi = \f{F_i}{\lambda_i}
+	\Rightarrow \mathcal{L}\sum_i \phi_i Y_i(x)                                          & = w\sum_{i}F_i Y_i(x)                     \\
+	\rightarrow \sum_{i} \underbracket{\phi_i \mathcal{L} Y_i(x)}_{\lambda_i w(x)Y_i(x)} & = \sum_{i} F_i w(x) Y_i(x)                \\
+	\rightarrow \sum_{i}\left( \phi_i \lambda_i - F_i \right)w(x) Y_i(x)                 & = 0 \rightarrow \phi = \f{F_i}{\lambda_i}
 \end{align*}
 \begin{align*}
 	\phi_p (x) = \sum_{i} \f{F_i}{\lambda_i} Y_i(x) \; \text{nghiệm đặc biệt},
@@ -288,23 +288,329 @@ nghiệm tổng quát cho $\phi$:
 
 \textbf{Nghiệm đặc biệt}
 \begin{align*}
-	\phi_p(x) &= \sum_{i} \f{1}{\lambda_i}\left( Y_i(t), F(t) \right)_w Y_i(x) \\
-	& = \sum_{i} \f{1}{\lambda_i} Y_i(x) \int_{a}^{b} Y^{\ast}_{i}(t) F(t)w(x)dt \\
-	& = \int_{a}^{b} \left[ \sum_{i} \f{1}{\lambda_i} Y^{}_{i}(x) Y^{\ast}_{i}(t) \right]w(t)F(t)dt \\
-	& = \int_{a}^{b} G(x,t)f(t)dt
+	\phi_p(x) & = \sum_{i} \f{1}{\lambda_i}\left( Y_i(t), F(t) \right)_w Y_i(x)                               \\
+	          & = \sum_{i} \f{1}{\lambda_i} Y_i(x) \int_{a}^{b} Y^{\ast}_{i}(t) F(t)w(x)dt                    \\
+	          & = \int_{a}^{b} \left[ \sum_{i} \f{1}{\lambda_i} Y^{}_{i}(x) Y^{\ast}_{i}(t) \right]w(t)F(t)dt \\
+	          & = \int_{a}^{b} G(x,t)f(t)dt
 \end{align*}
 trong đó: $G$ là hàm Green (với 2 biến $\neq$ nhau: $x$ và $t$ và chia cho trị riêng).\\
-f(t): ngoại lực
+$f(t)$: ngoại lực
 $\begin{cases}
-	\text{Bài toán dao động.}\\
-	\text{Forcing function.}
-\end{cases}$\\
+		\text{Bài toán dao động.} \\
+		\text{Forcing function.}
+	\end{cases}$\\
 Hàm Green cho nghịch đảo hình thức.
 \section{Đồng nhất thức Parseval}
 \begin{align*}
-	(F,F)_w  &= \int \sum_{i} F^{\ast}_i Y^{}_i \sum_{j} F_j Y_j w dx \\
-	& =\sum_{i,j} F^{\ast}_i F_j \underbracket{(Y_i,Y_j)_w}_{\delta_{i,j}} = \sum_{i}^{}\abs{F_i}^2
+	(F,F)_w & = \int \sum_{i} F^{\ast}_i Y^{}_i \sum_{j} F_j Y_j w dx                                       \\
+	        & =\sum_{i,j} F^{\ast}_i F_j \underbracket{(Y_i,Y_j)_w}_{\delta_{i,j}} = \sum_{i}^{}\abs{F_i}^2
 \end{align*}
+\chapter{Hàm suy rộng}
+\section{Hàm suy rộng và phân bố}
+\textbf{Định nghĩa hàm thử}:\\
+Lớp các hàm thử, chọn miền $\Omega \subseteq$ $\mathscr{R}^n$ nằm trong khôg gian có $Dim = n$. Hàm thử là các hàm trơn vô hạn $\phi = \in C^{\infty}(\Omega)$ mà tồn tại một tập compact support nằm trong ($\Omega$). Tồn tại một tập compact $K \subset \Omega$ mà làm cho $\phi(x) = 0$, khi $x \notin K$. Một ví dụ đơn giản cho hàm thử một chiều là:
+\begin{align*}
+	\phi(x) =
+	\begin{cases}
+		e^{\frac{1}{(1-x)^2}}; \quad \quad \text{khi} \; \abs{x}<1 \\
+		0
+	\end{cases}
+\end{align*}
+
+Gọi $\mathcal{D}(\Omega)$ là không gian các hàm thử. Sau khi đã chọn lớp các hàm thử, ta định nghĩa một phân bố $T$ là một ánh xạ tuyến tính:
+\begin{align*}
+	T:  \mathcal{D}(\Omega) & \rightarrow \mathscr{R} \\
+	\phi                    & \rightarrow T[\phi]
+\end{align*}
+Tập hợp các $T\rightarrow$ không gian các phân bố $\rightarrow$ không gian hàm thử $\mathcal{D}'(\Omega)$
+
+\chapter{Hàm Green cho phương trình đạo hàm riêng thuần nhất}
+\begin{align*}
+	content...
+\end{align*}
+
+\section{Bài tập trong Arfken \& Weber}
+
+
+\subsubsection{10.1.1/p456}
+Chứng minh rằng:
+\begin{align*}
+	G(x,t) =
+	\begin{cases}
+		 & x , \quad 0 \leq x < t, \\
+		 & t , \quad t < x\leq 1 , \\
+	\end{cases}
+\end{align*}
+là hàm Green cho toán tử $\mathcal{L} = -\dfrac{d^2}{dx^2}$, và điều kiện biên $y(0) = 0, y'(1) = 0$.\\
+
+\textbf{Giải:}\\
+Ta có $\mathcal{L} y = -\dfrac{d^2 y}{dx^2}  = -y''$. Ta đi giải phương trình thuần nhất $\mathcal{L} y = 0$.\\
+Phương trình đặc trưng cho $\mathcal{L} y = 0$ là:
+\begin{align*}
+	y^2 = 0
+\end{align*}
+Nghiệm tổng quát cho $\mathcal{L} y = 0$ là:
+\begin{align*}
+	y_1 & = A + Bx.     \\
+	y_2 & = A + B(1-x). \\
+\end{align*}
+Áp dụng điều kiện biên:
+\begin{align*}
+	 & y_1(0) = A + Bx = 0 \rightarrow A = 0 \rightarrow y_1(x) = x, \\
+	 & y_{2}{'}(1) = B = 0 \rightarrow y_2(x) = 1.
+\end{align*}
+$Wronskian$ cho $y_1,y_2$ là:
+\begin{align*}
+	W = y_{1} y_{2}' - y_{2} y_{1}' = -1.
+\end{align*}
+Hàm Green cho $\mathcal{L} y = 0$:
+\begin{align*}
+	G(x,\xi)  = \Theta(\xi - x) y_1(x)y_2(\xi) + \Theta(x - \xi) y_2(x)y_1(\xi) (DPCM)
+\end{align*}
+\subsubsection{10.1.2}
+Tìm hàm Green cho
+\begin{enumerate}[label=(\alph*)]
+	\item $\mathcal{L} y(x) = \dfrac{d^2 y(x)}{dx^2} + y(x) ,\quad
+		      \begin{cases}
+			      y(0)  & = 0, \\
+			      y'(1) & = 0. \\
+		      \end{cases}$
+	\item  $\mathcal{L} y(x) = \dfrac{d^2 y(x)}{dx^2} - y(x) , \quad y(x)$ hữu hạn khi $-\infty < x < \infty$\\
+\end{enumerate}
+
+\textbf{Giải}\\
+\begin{enumerate}[label=(\alph*)]
+	\item Ta đi giải phương trình thuần nhất $\mathcal{L} y(x) = 0$. \\
+	      Phương trình đặc trưng cho $\mathcal{L} y(x) = 0$ là:
+	      \begin{align*}
+		      y^2 + 1 = 0 ,
+	      \end{align*}
+	      nghiệm tổng quát cho phương trình trên là:
+	      \begin{align*}
+		       & y_{1} = A \cos x + B \sin x,         \\
+		       & y_{2} = A \cos (1-x) + B \sin (1-x).
+	      \end{align*}
+	      Áp dụng điều kiện biên:
+	      \begin{align*}
+		       & y_{1}(0) = 0 = A \cos 0 + B \sin 0 \rightarrow A = 0 \rightarrow y_{1}(x) = \sin x ,     \\
+		       & y'_{2}(1) = 0 = A \sin 0 - B \cos 0 \rightarrow B = 0 \rightarrow y_{2}(x) = \cos (1-x).
+	      \end{align*}
+	      $Wronskian$ cho $y_1,y_2$ là:
+	      \begin{align*}
+		      \begin{vmatrix}
+			      y_1  & y_2  \\
+			      y'_1 & y'_2 \\
+		      \end{vmatrix}
+		       & =
+		      \begin{vmatrix}
+			      \sin x & \cos (1-x) \\
+			      \cos x & \sin (1-x) \\
+		      \end{vmatrix}                       \\
+		       & = \sin x \sin(1-x) - \cos x \cos (1-x) \\
+		       & = -\cos 1 = W.
+	      \end{align*}
+	      Hàm Green cho phương trình $\mathcal{L} y$ với $\alpha = 1$ và $W = -\cos 1$:
+	      \begin{align*}
+		      G(x,\xi) = -\f{1}{\cos 1} \left[ \Theta(\xi - x) \sin x \cos(1-\xi) + \Theta(x - \xi) \cos(1-x)\sin \xi \right].
+	      \end{align*}
+	\item  Phương trình đặc trưng cho $\mathcal{L} y(x) = 0$:
+	      \begin{align*}
+		      y^2 - 1 = 0,
+	      \end{align*}
+	      nghiệm tổng quát cho phương trình trên là:
+	      \begin{align*}
+		      y_1(x) & = A e^{x} + B e^{-x},    \\
+		      y_2(x) & = A e^{x-1} + B e^{1-x}.
+	      \end{align*}
+	      Áp dụng điều kiện biên:
+	      \begin{align*}
+		      y_1(x\rightarrow - \infty) & \rightarrow B = 0 \rightarrow y_1(x) = e^{x}  ,  \\
+		      y_2(x\rightarrow + \infty) & \rightarrow A = 0 \rightarrow y_2(x) = e^{1-x} .
+	      \end{align*}
+	      $Wronskian$ cho $y_1,y_2$ là:
+	      \begin{align*}
+		      \begin{vmatrix}
+			      y_1  & y_2  \\
+			      y'_1 & y'_2 \\
+		      \end{vmatrix}
+		       & =
+		      \begin{vmatrix}
+			      e^{x} & e^{1-x}  \\
+			      e^{x} & -e^{1-x} \\
+		      \end{vmatrix}                     \\
+		       & = - e^{x} e^{1-x} - e^{x} e^{1-x} \\
+		       & = -2 e^{x} e^{1-x} = W.
+	      \end{align*}
+	      Hàm Green cho phương trình $\mathcal{L} y$ với $\alpha = 1$ và $W = -2 e^{x} e^{1-x}$:
+	      \begin{align*}
+		      G(x,\xi) 
+		      &= -\f{1}{2 e^{x} e^{1-x}} \left[ \Theta(\xi - x) e^{x} e^{1-\xi} + \Theta(x - \xi) e^{\xi} e^{1-x} \right] \\
+		      & = -\f{1}{2} \left[ \Theta(\xi - x) e^{x-\xi} + \Theta(x - \xi) e^{\xi - x} \right].
+	      \end{align*}
+\end{enumerate}
+\subsubsection{10.1.4/p.457}
+Tìm hàm Green cho phương trình sau:
+\begin{align*}
+	-\dfrac{d^2 y}{dx^2} - \dfrac{y}{4} = f(x),
+\end{align*}
+với điều kiện biên là $y(0) = y(\pi) = 0$. \\
+
+\textbf{Giải:}\\
+Ta đi giải phương trình thuần nhất cho $\mathcal{L} y(x) = -\dfrac{d^2 y}{dx^2} - \dfrac{y}{4}  = 0$. Phương trình đăcj trưng cho $\mathcal{L} y(x) = 0:$
+\begin{align*}
+	-y^2 - \dfrac{1}{4} = 0,
+\end{align*}
+nghiệm tổng quát cho phương trình trên là:
+\begin{align*}
+	y_{1}(x) &= A \cos \f{x}{2} + B \sin \f{x}{2},\\
+	y_{2}(x) &= A \cos \f{x}{2} + B \sin \f{x}{2}.
+\end{align*}
+Áp dụng điều kiện biên:
+\begin{align*}
+	y_{1}(0) &= A \cos 0 + B \sin 0 \rightarrow A = 0 \rightarrow y_{1}(x) = \sin \f{x}{2}, \\
+	y_{2}(\pi) &= A \cos \f{\pi}{2} + B \sin \f{\pi}{2} = 0 \rightarrow B = 0 \rightarrow y_2(x) = \cos \f{x}{2}.
+\end{align*}
+$Wronskian$ cho $y_1,y_2$ là:
+\begin{align*}
+	W = y_1 y'_2 - y_2 y'_1 
+	&= -\f{1}{2} \sin \f{x}{2} \sin \f{x}{2} - \f{1}{2} \cos \f{x}{2} \cos \f{x}{2}\\
+	& = -\f{1}{2} 
+\end{align*}
+Hàm Green cho phương trình $\mathcal{L}$ với $\alpha = - 1$ và $ W = -\f{1}{2}$:
+\begin{align*}
+	G(x,\xi) = 2 \left[ \Theta(\xi - x) \sin \f{x}{2} \cos \f{\xi}{2} + \Theta(x-\xi) \sin \f{\xi}{2} \cos \f{x}{2} \right]
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
