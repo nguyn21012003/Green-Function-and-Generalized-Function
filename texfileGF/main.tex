@@ -325,9 +325,103 @@ Gọi $\mathcal{D}(\Omega)$ là không gian các hàm thử. Sau khi đã chọn
 Tập hợp các $T\rightarrow$ không gian các phân bố $\rightarrow$ không gian hàm thử $\mathcal{D}'(\Omega)$
 
 \chapter{Hàm Green cho phương trình đạo hàm riêng thuần nhất}
-\begin{align*}
-	content...
-\end{align*}
+\begin{align}
+	\mathcal{L} y = \alpha(x) \f{d^2 y}{dx^2} + \beta(x)\f{dy}{dx} \gamma(x) = f(x),
+\end{align}
+với $\alpha,\beta,\gamma$ là những hàm liên tục trên $\left[a,b\right]$, và $\alpha$ là $non-zero$. Định nghĩa hàm Green $G(x;\xi)$ của $\mathcal{L}$ để là nghiệm đặc biệt
+\begin{align}
+	\mathcal{L} G = \delta (x-\xi)
+\end{align}
+thỏa điều kiện biên thuần nhất $G(a;\xi) = G(b;\xi) = 0$.
+
+Tầm quan trọng của Hàm Green đó là đưa ra nghiệm $G(x;\xi)$ của phương trình (3.2), chúng ta có thể lập tức giải được một vấn đề tổng quá hơn $\mathcal{L} y(x) = f(x)$ của (3.1) với thành phần lực $f(x)$ bất kì bằng cách viết
+\begin{align}
+	y(x) = \int_{a}^{b} G(x,\xi) f(\xi) d\xi.
+\end{align}
+Để kiểm chứng điều đó, chúng ta dùng toán tử $\mathcal{L}$ tác dụng lên $y(x)$
+\begin{align}
+	\mathcal{L} y(x)
+	 & = \mathcal{L} \left[ \int_{a}^{b} G(x,\xi) f(\xi) d\xi \right] = \int_{a}^{b} \left[ \mathcal{L} G(x,\xi) \right] f(\xi) d\xi \nonumber \\
+	 & = \int_{a}^{b} \delta(x - \xi) f(\xi) d\xi = f(x),
+\end{align}
+hàm Green lúc này chỉ phụ thuộc vào $x$.
+\section{Xây dựng hàm Green}
+Việc xây dựng hàm Green dựa vào $x \neq \xi$, $\mathcal{L} G = 0$. Do đó, cả $x < \xi$ và $x > \xi$ đều có thể viết $G$ dưới dạng là nghiệm của phương trình thuật nhất. Giả sử $\left\{y_1,y_2\right\}$ là cơ sở độc lập tuyến tính của $\mathcal{L} y =0$ trên $\left[a,b\right]$.
+\begin{align}
+	\begin{cases}
+		a < x < \xi: y_1 (a) = 0\rightarrow G(x,\xi) = A(\xi) y_1 (x). \\
+		\xi < x < b: y_2 (b) = 0\rightarrow G(x,\xi) = B(\xi) y_2 (x).
+	\end{cases}
+\end{align}
+
+Tại $x = \xi$, ta lấy tích phân hai vế của (3.2) trong vùng lân cận theo $\xi$, ta có:
+\begin{align}
+	\int_{\xi - \epsilon}^{\xi + \epsilon} \left[ \alpha(x) \f{\partial^2 G}{\partial x^2} dx + \beta(x)\f{\partial G}{\partial x}  + \gamma(x)G \right] = \int_{\xi - \epsilon}^{\xi + \epsilon }\delta (x - \xi ) d\xi = 1.
+\end{align}
+Ta đã biết $G(x,\xi)$ là liên tục, vậy nên số hạng cuối cùng của $LHS$ đóng góp bằng \textit{không} nếu như ta lấy tích phân trong vùng cực nhỏ. Vì $G$ là liên tục nên $\partial_x G$ là hàm có bước nhảy tại $x=\xi$,vì thế cũng cho đóng góp bằng \textit{không} khi lấy tích phân trong vùng cực kì nhỏ. Cuối cùng ta còn lại:
+\begin{align}
+	\lim_{\xi - \rightarrow 0^+} \int_{\xi - \epsilon}^{\xi + \epsilon }\alpha(x) \f{\partial^2 G}{\partial x^2} d x = \alpha(x) \left[ \f{\partial G}{\partial x} \at{x = \epsilon^{+} }{} - \f{\partial G}{\partial x} \at{x = \epsilon^{-} }{} \right].
+\end{align}
+Nhờ tính liên tục nên ta có các điều kiện
+\begin{align}
+	\begin{cases}
+		G(x,\xi) \at{x=\xi^{-}}{}                                                                                 & = G(x,\xi) \at{x=\xi^{+}}{}, \\
+		\f{\partial G}{\partial x} \at{x = \epsilon^{+} }{} - \f{\partial G}{\partial x} \at{x = \epsilon^{-} }{} & = \f{1}{\alpha(\xi)}        \\
+	\end{cases}
+\end{align}
+So sánh với (3.5) các điều kiện trên trở thành
+\begin{align}
+	\begin{cases}
+		&A(\xi) y_{1}(\xi) = B(\xi) y_{2}(\xi), \\
+		&A(\xi) y'_{1}(\xi) - B(\xi) y'_{2}(\xi) = \f{1}{\alpha(\xi)}.
+	\end{cases}
+\end{align}
+Ta tìm được các hệ phương trình tuyến tính cho $A,B$ là:
+\begin{align}
+	\begin{cases}
+		A(\xi) &= \f{y_{2}(\xi)}{\alpha(\xi)\left[y_{1}(\xi)y'_{2}(\xi) - y_{2}(\xi)y'_{1}(\xi)\right]} \\
+		B(\xi) &= \f{y_{1}(\xi)}{\alpha(\xi)\left[y_{1}(\xi)y'_{2}(\xi) - y_{2}(\xi)y'_{1}(\xi)\right]} \\
+	\end{cases}  
+\end{align}
+với
+\begin{align}
+	y_{1}(\xi)y'_{2}(\xi) - y_{2}(\xi)y'_{1}(\xi) = W(x),
+\end{align}
+gọi là $Wronskian$ của $y_1,y_2$. $Wronskian$ được tính tại $x=\xi$ và $W \neq 0$.
+
+Vậy hàm Green của $\mathcal{L} G = \delta (x-\xi)$ thỏa $G(\alpha,\xi) = G(\beta,\xi) = 0$ có dạng là:
+\begin{align}
+	G(x,\xi) 
+	& = 
+	\begin{cases}
+		\f{y_{1}(x)y_{2}(\xi)}{\alpha(\xi)W(\xi)} \quad\quad a \leq x < \xi ,\\
+		\f{y_{2}(x)y_{1}(\xi)}{\alpha(\xi)W(\xi)} \quad\quad \xi < x \leq b.
+	\end{cases}\\
+	& = \f{1}{\alpha(\xi) W(\xi)} \left[ \Theta(\xi - x)y_{1}(x)y_{2}(\xi) + \Theta(x-\xi)y_{1}(\xi)y_{2}(x) \right],
+\end{align} 
+với $\Theta$ là hàm Heaviside. Dẫn đến nghiệm của $\mathcal{L} y = f$ là
+\begin{align}
+	y(x) 
+	& = \int_{a}^{b} G(x;\xi) f(\xi) d \xi \nonumber\\
+	& = y_{2}(x) \int_{a}^{x} \f{y_{1}(\xi)}{\alpha(\xi) W(\xi)} f(\xi) d\xi + y_{1}(x) \int_{x}^{b} \f{y_{2}(\xi)}{\alpha(\xi)W(\xi)}f(\xi) d\xi.
+\end{align}
+\section{Hàm Green với điều kiện biên không thuần nhất}
+Sự xây dựng hàm Green của chúng ta cho bài toán ngoại lực dựa trên hàm Green tuân theo điều kiện không thuần nhất. Để giải quyết các bài toán điều kiện biên không thuần nhất bằng phương pháp hàm Green, chúng ta phải làm theo các bước nhất định.
+
+Đầu tiên, tìm \textit{bất cứ} nghiệm riêng $y_{p}(x)$ với phương trình thuần nhất $\mathcal{L}y = 0$ mà thỏa được điều kiện biên không thuần nhất. Khi toán tử vi phân tuyến tính $\mathcal{L}$ là tuyến tính, nghiệm tổng quát cho phương trình $\mathcal{L} y = f$ tuân theo điều kiện biên không thuần nhất chỉ đơn giản là:
+\begin{align}
+	y(x) = y_p(x) + \int_{a}^{b} G(x,\xi) f(\xi) d\xi.
+\end{align}
+
+Ta đã có hàm Green cho bài toán điều kiên biên thuần nhất là (3.13). Bên cạnh đó, ta đã biết được hàm Green cho toán tử tự phó có thể được viết thành
+\begin{align}
+	G(x,\xi) = \sum_{n = 1}^{\infty} \f{1}{\lambda_n} Y_n(x)Y_n^{*}(\xi),
+\end{align}
+dưới dạng của các hàm riêng $\left\{ Y_n(x) \right\}$ và trị riêng {$\lambda_n$} của toán tử Sturm-Liouville.
+
+Lấy ví dụ cho bài toán $\mathcal{L} y = -y'' - y$ trên $\left[a,b\right] = \left[0,1\right]$ và điều kiện biên $y(0) = y(1) = 0$ (Xem trong sách).
+
+
 
 \section{Bài tập trong Arfken \& Weber}
 
@@ -443,9 +537,9 @@ Tìm hàm Green cho
 	      \end{align*}
 	      Hàm Green cho phương trình $\mathcal{L} y$ với $\alpha = 1$ và $W = -2 e^{x} e^{1-x}$:
 	      \begin{align*}
-		      G(x,\xi) 
-		      &= -\f{1}{2 e^{x} e^{1-x}} \left[ \Theta(\xi - x) e^{x} e^{1-\xi} + \Theta(x - \xi) e^{\xi} e^{1-x} \right] \\
-		      & = -\f{1}{2} \left[ \Theta(\xi - x) e^{x-\xi} + \Theta(x - \xi) e^{\xi - x} \right].
+		      G(x,\xi)
+		       & = -\f{1}{2 e^{x} e^{1-x}} \left[ \Theta(\xi - x) e^{x} e^{1-\xi} + \Theta(x - \xi) e^{\xi} e^{1-x} \right] \\
+		       & = -\f{1}{2} \left[ \Theta(\xi - x) e^{x-\xi} + \Theta(x - \xi) e^{\xi - x} \right].
 	      \end{align*}
 \end{enumerate}
 \subsubsection{10.1.4/p.457}
@@ -462,28 +556,49 @@ Ta đi giải phương trình thuần nhất cho $\mathcal{L} y(x) = -\dfrac{d^2
 \end{align*}
 nghiệm tổng quát cho phương trình trên là:
 \begin{align*}
-	y_{1}(x) &= A \cos \f{x}{2} + B \sin \f{x}{2},\\
-	y_{2}(x) &= A \cos \f{x}{2} + B \sin \f{x}{2}.
+	y_{1}(x) & = A \cos \f{x}{2} + B \sin \f{x}{2}, \\
+	y_{2}(x) & = A \cos \f{x}{2} + B \sin \f{x}{2}.
 \end{align*}
 Áp dụng điều kiện biên:
 \begin{align*}
-	y_{1}(0) &= A \cos 0 + B \sin 0 \rightarrow A = 0 \rightarrow y_{1}(x) = \sin \f{x}{2}, \\
-	y_{2}(\pi) &= A \cos \f{\pi}{2} + B \sin \f{\pi}{2} = 0 \rightarrow B = 0 \rightarrow y_2(x) = \cos \f{x}{2}.
+	y_{1}(0)   & = A \cos 0 + B \sin 0 \rightarrow A = 0 \rightarrow y_{1}(x) = \sin \f{x}{2},                     \\
+	y_{2}(\pi) & = A \cos \f{\pi}{2} + B \sin \f{\pi}{2} = 0 \rightarrow B = 0 \rightarrow y_2(x) = \cos \f{x}{2}.
 \end{align*}
 $Wronskian$ cho $y_1,y_2$ là:
 \begin{align*}
-	W = y_1 y'_2 - y_2 y'_1 
-	&= -\f{1}{2} \sin \f{x}{2} \sin \f{x}{2} - \f{1}{2} \cos \f{x}{2} \cos \f{x}{2}\\
-	& = -\f{1}{2} 
+	W = y_1 y'_2 - y_2 y'_1
+	 & = -\f{1}{2} \sin \f{x}{2} \sin \f{x}{2} - \f{1}{2} \cos \f{x}{2} \cos \f{x}{2} \\
+	 & = -\f{1}{2}
 \end{align*}
 Hàm Green cho phương trình $\mathcal{L}$ với $\alpha = - 1$ và $ W = -\f{1}{2}$:
 \begin{align*}
 	G(x,\xi) = 2 \left[ \Theta(\xi - x) \sin \f{x}{2} \cos \f{\xi}{2} + \Theta(x-\xi) \sin \f{\xi}{2} \cos \f{x}{2} \right]
 \end{align*}
+\subsubsection{10.1.5**/p.457}
+Tìm hàm Green cho:
+\begin{align*}
+	x^2 \f{d^2y}{dx^2} + x \f{dy}{dx} + \left(k^2 x^2 - 1\right)y = 0,
+\end{align*}
+với điều kiện biên
+$
+	\begin{cases}
+		y(0) & = 0, \\
+		y(1) & = 1. \\
+	\end{cases}
+$\\
 
-
-
-
+\textbf{Giải:}\\
+Phương trình đặc trưng cho $\mathcal{L} y = 0$
+\begin{align*}
+	x^2 r^2 + x r + (k^2 x^2 - 1) = 0,
+\end{align*}
+\begin{align*}
+	\Delta = b^2 - 4 a c = x^2 - 4 x^2 (k^2 x^2 - 1) = -4 k^2 x^4 + 5x^2  ,
+\end{align*}
+nghiệm tổng quát cho phương trình trên là:
+\begin{align*}
+	y_1 (x) = continue
+\end{align*}
 
 
 
