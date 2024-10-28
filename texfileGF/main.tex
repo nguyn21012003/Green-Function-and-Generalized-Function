@@ -366,22 +366,22 @@ Nhờ tính liên tục nên ta có các điều kiện
 \begin{align}
 	\begin{cases}
 		G(x,\xi) \at{x=\xi^{-}}{}                                                                                 & = G(x,\xi) \at{x=\xi^{+}}{}, \\
-		\f{\partial G}{\partial x} \at{x = \epsilon^{+} }{} - \f{\partial G}{\partial x} \at{x = \epsilon^{-} }{} & = \f{1}{\alpha(\xi)}        \\
+		\f{\partial G}{\partial x} \at{x = \epsilon^{+} }{} - \f{\partial G}{\partial x} \at{x = \epsilon^{-} }{} & = \f{1}{\alpha(\xi)}         \\
 	\end{cases}
 \end{align}
 So sánh với (3.5) các điều kiện trên trở thành
 \begin{align}
 	\begin{cases}
-		&A(\xi) y_{1}(\xi) = B(\xi) y_{2}(\xi), \\
-		&A(\xi) y'_{1}(\xi) - B(\xi) y'_{2}(\xi) = \f{1}{\alpha(\xi)}.
+		 & A(\xi) y_{1}(\xi) = B(\xi) y_{2}(\xi),                        \\
+		 & A(\xi) y'_{1}(\xi) - B(\xi) y'_{2}(\xi) = \f{1}{\alpha(\xi)}.
 	\end{cases}
 \end{align}
 Ta tìm được các hệ phương trình tuyến tính cho $A,B$ là:
 \begin{align}
 	\begin{cases}
-		A(\xi) &= \f{y_{2}(\xi)}{\alpha(\xi)\left[y_{1}(\xi)y'_{2}(\xi) - y_{2}(\xi)y'_{1}(\xi)\right]} \\
-		B(\xi) &= \f{y_{1}(\xi)}{\alpha(\xi)\left[y_{1}(\xi)y'_{2}(\xi) - y_{2}(\xi)y'_{1}(\xi)\right]} \\
-	\end{cases}  
+		A(\xi) & = \f{y_{2}(\xi)}{\alpha(\xi)\left[y_{1}(\xi)y'_{2}(\xi) - y_{2}(\xi)y'_{1}(\xi)\right]} \\
+		B(\xi) & = \f{y_{1}(\xi)}{\alpha(\xi)\left[y_{1}(\xi)y'_{2}(\xi) - y_{2}(\xi)y'_{1}(\xi)\right]} \\
+	\end{cases}
 \end{align}
 với
 \begin{align}
@@ -391,19 +391,19 @@ gọi là $Wronskian$ của $y_1,y_2$. $Wronskian$ được tính tại $x=\xi$ 
 
 Vậy hàm Green của $\mathcal{L} G = \delta (x-\xi)$ thỏa $G(\alpha,\xi) = G(\beta,\xi) = 0$ có dạng là:
 \begin{align}
-	G(x,\xi) 
-	& = 
+	G(x,\xi)
+	 & =
 	\begin{cases}
-		\f{y_{1}(x)y_{2}(\xi)}{\alpha(\xi)W(\xi)} \quad\quad a \leq x < \xi ,\\
+		\f{y_{1}(x)y_{2}(\xi)}{\alpha(\xi)W(\xi)} \quad\quad a \leq x < \xi , \\
 		\f{y_{2}(x)y_{1}(\xi)}{\alpha(\xi)W(\xi)} \quad\quad \xi < x \leq b.
-	\end{cases}\\
-	& = \f{1}{\alpha(\xi) W(\xi)} \left[ \Theta(\xi - x)y_{1}(x)y_{2}(\xi) + \Theta(x-\xi)y_{1}(\xi)y_{2}(x) \right],
-\end{align} 
+	\end{cases} \\
+	 & = \f{1}{\alpha(\xi) W(\xi)} \left[ \Theta(\xi - x)y_{1}(x)y_{2}(\xi) + \Theta(x-\xi)y_{1}(\xi)y_{2}(x) \right],
+\end{align}
 với $\Theta$ là hàm Heaviside. Dẫn đến nghiệm của $\mathcal{L} y = f$ là
-\begin{align}
-	y(x) 
-	& = \int_{a}^{b} G(x;\xi) f(\xi) d \xi \nonumber\\
-	& = y_{2}(x) \int_{a}^{x} \f{y_{1}(\xi)}{\alpha(\xi) W(\xi)} f(\xi) d\xi + y_{1}(x) \int_{x}^{b} \f{y_{2}(\xi)}{\alpha(\xi)W(\xi)}f(\xi) d\xi.
+\begin{align}b
+	y(x)
+	 & = \int_{a}^{b} G(x;\xi) f(\xi) d \xi \nonumber                                                                                               \\
+	 & = y_{2}(x) \int_{a}^{x} \f{y_{1}(\xi)}{\alpha(\xi) W(\xi)} f(\xi) d\xi + y_{1}(x) \int_{x}^{b} \f{y_{2}(\xi)}{\alpha(\xi)W(\xi)}f(\xi) d\xi.
 \end{align}
 \section{Hàm Green với điều kiện biên không thuần nhất}
 Sự xây dựng hàm Green của chúng ta cho bài toán ngoại lực dựa trên hàm Green tuân theo điều kiện không thuần nhất. Để giải quyết các bài toán điều kiện biên không thuần nhất bằng phương pháp hàm Green, chúng ta phải làm theo các bước nhất định.
@@ -421,7 +421,7 @@ dưới dạng của các hàm riêng $\left\{ Y_n(x) \right\}$ và trị riêng
 
 Lấy ví dụ cho bài toán $\mathcal{L} y = -y'' - y$ trên $\left[a,b\right] = \left[0,1\right]$ và điều kiện biên $y(0) = y(1) = 0$ (Xem trong sách).
 
-
+\newpage
 
 \section{Bài tập trong Arfken \& Weber}
 
@@ -445,8 +445,8 @@ Phương trình đặc trưng cho $\mathcal{L} y = 0$ là:
 \end{align*}
 Nghiệm tổng quát cho $\mathcal{L} y = 0$ là:
 \begin{align*}
-	y_1 & = A + Bx.     \\
-	y_2 & = A + B(1-x). \\
+	y_1 & = (A + Bx).     \\
+	y_2 & = A + B(1-x). 
 \end{align*}
 Áp dụng điều kiện biên:
 \begin{align*}
@@ -599,26 +599,98 @@ nghiệm tổng quát cho phương trình trên là:
 \begin{align*}
 	y_1 (x) = continue
 \end{align*}
+\subsubsection{10.1.7/p.457}
+Tìm hàm Green cho
+\begin{align*}
+	\f{d^2 \psi}{dt^2} + k \f{d\psi}{dt} = f(t),
+\end{align*}
+với điều kiện đầu là $\psi(0) = \psi'(0) = 0$, giải phương trình này với $t > 0$ và $f(t) = \exp(-t)$ là cho trước. \\
 
+\textbf{Giải:}\\
+Ta đi giải phương trình thuần nhất cho $\mathcal{L} \psi = 0$, ta tìm được nghiệm tổng quát là
+\begin{enumerate}[label=(\alph*)]
+	\item với $k > 0$
+	      \begin{align*}
+		      y = A \cos(\sqrt{k} t) + B \sin(\sqrt{k} t)
+	      \end{align*}
+	      vậy nên hàm Green là $G(t,\tau) = 0$.\\
+	      Với $t > \tau$: Hàm Green có dạng
+	      \begin{align*}
+		      G(t,\tau)
+		       & = C y_1(t - \tau) + Dy_2(t - \tau)        \\
+		       & = C \cos(\sqrt{k} t) + D \sin(\sqrt{k} t) \\
+		       & = 0,
+	      \end{align*}
+	      tại $t = \tau = 0$, ta áp dụng điều kiện biên. Khi $G =0$, $t<\tau$ ta có:
+	      \begin{align*}
+		      \begin{cases}
+			      G(t,\tau)  & = C \cos(\sqrt{k} t) + D \sin(\sqrt{k} t) = 0 \rightarrow C = 0                   \\
+			      G'(t,\tau) & = \f{1}{\alpha} \rightarrow \sqrt{k} D \cos 0 = 1 \rightarrow D = \f{1}{\sqrt{k}}
+		      \end{cases}
+	      \end{align*}
+	      \begin{align*}
+		      \Rightarrow G(t,\tau) = \f{1}{\sqrt{k}} \sin (t - \tau)  \quad \quad (t > 0)
+	      \end{align*}
+	      Ta có được nghiệm là:
+	      \begin{align*}
+		      \psi(t) = \f{1}{\sqrt{k}} \int_{0}^{t} \sin(t-\tau) f(\tau) d\tau
+	      \end{align*}
+	\item  với $k < 0$\\
+	Ta được nghiệm là:  
+	\begin{align*}
+		y = A e^{kx} + B e^{-kx}
+	\end{align*}
+	Tại $t<\tau$,
+	áp dụng điều kiện biên:
+	\begin{align*}
+		\psi(0) &= A e^{k0} + B e^{-k0} = 0  \rightarrow A = - B \\
+		\psi'(0) &= Ak e^{k0} + Ak e^{-k0} = 0  \rightarrow A = 0
+	\end{align*}
+	tại $t = \tau$ ta áp dụng điều kiện biên. Khi $G =0$, $t<\tau$ ta có:
+	\begin{align*}
+		\psi(0) &= A e^{k0} + B e^{-k0} = 0  \rightarrow A = - B \\
+		\psi'(0) &= Ak e^{k0} + Ak e^{-k0} = \f{1}{\alpha}  \rightarrow A = \f{1}{2k}
+	\end{align*}
+	\begin{align*}
+		&\Rightarrow G(t,\tau) = \f{1}{2k} e^{kt} \\
+		&\Rightarrow y(t) = \f{1}{2k} \int_{0}^{t} e^{kt} f(\tau) d\tau \\
+	\end{align*}
+\end{enumerate}
+\subsubsection{10.1.8/p.457}
+Chứng minh hàm Green sau 
+\begin{align*}
+	G(x,x') = -\f{i}{2k}\exp (ik \abs{x - x'})
+\end{align*}
+là nghiệm của phương trình 
+\begin{align*}
+	\left( \f{d^2}{dx^2} + k^2 \right) \psi(x) = g(x)
+\end{align*}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\textbf{Giải:} \\
+Ta đi giải phương trình đặc trưng cho $\mathcal{L} y = 0$
+\begin{align*}
+	r^2 + k^2 = 0,
+\end{align*}
+với $\Delta = b^2 - 4ac = -4k^2 < 0$. Nên có nghiệm tổng quát là
+\begin{align*}
+	\psi_1(x) &= Ae^{ikx} + Be^{-ikx}, \\
+	\psi_2(x) &= Ae^{ik(1 - x)} + Be^{-ik(x-1)}.
+\end{align*}
+Áp dụng điều kiên biên:
+\begin{align*}
+	&\psi_1(x\rightarrow -\infty) \rightarrow B = 0 \rightarrow \psi_1(x) = e^{ikx} \\
+	&\psi_2(x\rightarrow \infty) \rightarrow A = 0 \rightarrow \psi_2(x) = e^{-ikx}
+\end{align*}
+$Wronskian$ cho $\psi_1(x),\psi_2(x)$
+\begin{align*}
+	W = y_1 y'_2 - y_2 y'_1 = - 2ik
+\end{align*}
+Hàm Green cho $\mathcal{L} y$ là:
+\begin{align*}
+	G(x,\xi) 
+	& = \f{1}{\alpha(\xi) W(\xi)} \left[ \Theta(\xi - x)y_{1}(x)y_{2}(\xi) + \Theta(x-\xi)y_{1}(\xi)y_{2}(x) \right] \\
+	& = \f{1}{-2ik} \left[ \Theta(\xi - x) e^{ikx} e^{-ik\xi} + \Theta(x-\xi) e^{ik\xi} e^{-ikx}  \right]
+\end{align*}
 
 
 
