@@ -4,10 +4,9 @@
 \usepackage{anyfontsize,fontsize}
 \changefontsize[13pt]{13pt}
 \usepackage{commath}
-\usepackage{blindtext}
 \usepackage{parskip}
 \usepackage{xcolor}
-\usepackage{amssymb}
+\usepackage{amssymb,amsfonts}
 \usepackage{slashed,cancel}
 \usepackage{indentfirst}
 \usepackage{pdfpages}
@@ -16,13 +15,10 @@
 
 \usepackage{nccmath}
 \usepackage{mathtools}
-\usepackage{amsfonts}
-\usepackage{amsmath,systeme,bbold}
-\usepackage[thinc]{esdiff}
-\usepackage{hyperref}
-\usepackage{dirtytalk,bm,physics,mathrsfs,enumitem}
 
-\usepackage{lipsum}
+\usepackage{amsmath,systeme}
+\usepackage{hyperref}
+\usepackage{bm,physics,mathrsfs,enumitem}
 \usepackage{fancyhdr}
 %footnote
 \pagestyle{fancy}
@@ -67,7 +63,8 @@
 \newcommand{\dps}{\displaystyle}
 
 \newcommand{\f}[2]{\dfrac{#1}{#2}}
-\newcommand{\at}[2]{\bigg\rvert_{#1}^{#2} }
+\newcommand{\at}[2]{\bigg\rvert_{#1}^{#2}}
+\newcommand{\atsmall}[2]{\big\rvert_{#1}^{#2}}
 
 \renewcommand{\baselinestretch}{1.5}
 
@@ -305,10 +302,30 @@ Hàm Green cho nghịch đảo hình thức.
 	(F,F)_w & = \int \sum_{i} F^{\ast}_i Y^{}_i \sum_{j} F_j Y_j w dx                                       \\
 	        & =\sum_{i,j} F^{\ast}_i F_j \underbracket{(Y_i,Y_j)_w}_{\delta_{i,j}} = \sum_{i}^{}\abs{F_i}^2
 \end{align*}
+\section{Một số ví dụ}
+\subsection*{Toán tử đạo hàm bậc 2}
+Cho trước $\mathcal{L} = \f{d^2}{dx^2}b$, hàm riêng cho phương trình là:
+\begin{align*}
+	\mathcal{L} y(x) = -\lambda y(x)
+\end{align*}
+Áp dụng điều kiện biên:
+\begin{align*}
+	\begin{cases}
+		y(L) = y(-L), \\
+		y'(L) = y'(-L). \\
+	\end{cases}
+\end{align*}
+Với $\lambda < 0$ nghiệm thỏa điều kiện biên là nghiệm tầm thường với $y(x) = 0$. Với $\lambda \geq 0$, nghiệm thỏa điều kiện biên là
+\begin{align*}
+	y_n(x) = \exp(i \f{n\pi x}{L}) \quad \quad \text{với}\quad \lambda_n = \f{n^2 \pi^2}{L^2} (n\in \mathbb{Z}).
+\end{align*}
+
+
+
 \chapter{Hàm suy rộng}
 \section{Hàm suy rộng và phân bố}
 \textbf{Định nghĩa hàm thử}:\\
-Lớp các hàm thử, chọn miền $\Omega \subseteq$ $\mathscr{R}^n$ nằm trong khôg gian có $Dim = n$. Hàm thử là các hàm trơn vô hạn $\phi = \in C^{\infty}(\Omega)$ mà tồn tại một tập compact support nằm trong ($\Omega$). Tồn tại một tập compact $K \subset \Omega$ mà làm cho $\phi(x) = 0$, khi $x \notin K$. Một ví dụ đơn giản cho hàm thử một chiều là:
+Lớp các hàm thử, chọn miền $\Omega \subseteq$ $\mathbb{R}^n$ nằm trong khôg gian có $Dim = n$. Hàm thử là các hàm trơn vô hạn $\phi = \in C^{\infty}(\Omega)$ mà tồn tại một tập compact support nằm trong ($\Omega$). Tồn tại một tập compact $K \subset \Omega$ mà làm cho $\phi(x) = 0$, khi $x \notin K$. Một ví dụ đơn giản cho hàm thử một chiều là:
 \begin{align*}
 	\phi(x) =
 	\begin{cases}
@@ -319,10 +336,36 @@ Lớp các hàm thử, chọn miền $\Omega \subseteq$ $\mathscr{R}^n$ nằm tr
 
 Gọi $\mathcal{D}(\Omega)$ là không gian các hàm thử. Sau khi đã chọn lớp các hàm thử, ta định nghĩa một phân bố $T$ là một ánh xạ tuyến tính:
 \begin{align*}
-	T:  \mathcal{D}(\Omega) & \rightarrow \mathscr{R} \\
+	T:  \mathcal{D}(\Omega) & \rightarrow \mathbb{R} \\
 	\phi                    & \rightarrow T[\phi]
 \end{align*}
 Tập hợp các $T\rightarrow$ không gian các phân bố $\rightarrow$ không gian hàm thử $\mathcal{D}'(\Omega)$
+
+\section{Bài tập}
+\begin{align*}
+	\mathcal{L} y(x) = \lambda x, 
+\end{align*}
+với $\mathcal{L}$ là toán tử tuyến tính đạo hàm bậc 2, có dạng là
+\begin{align*}
+	\mathcal{L} (x) = p_{0}(x)\f{d^2}{dx^2} + p_{1}(x)\f{d}{dx} + p_{2}(x)
+\end{align*}
+$\mathcal{L}$ được gọi là tự phó khi và chỉ khi
+\begin{align*}
+	p'_{0}(x) = p_{1}(x),
+\end{align*}
+ta có thể viết lại $\mathcal{L}$ thành
+\begin{align*}
+	\mathcal{L} (x) = \f{d}{dx}\left[p_{0}(x) \f{d}{dx}\right] + p_{2}(x)
+\end{align*}
+\subsection{Prob 3.3 D.Skinner}
+\begin{align*}
+	\ddot{\theta}(t) + 2p \dot{\theta} + (p^2 + q^2) \theta(t) = f(t),
+\end{align*}
+
+
+
+
+
 
 \chapter{Hàm Green cho phương trình đạo hàm riêng thuần nhất}
 \begin{align}
@@ -445,8 +488,8 @@ Phương trình đặc trưng cho $\mathcal{L} y = 0$ là:
 \end{align*}
 Nghiệm tổng quát cho $\mathcal{L} y = 0$ là:
 \begin{align*}
-	y_1 & = (A + Bx).     \\
-	y_2 & = A + B(1-x). 
+	y_1 & = (A + Bx).   \\
+	y_2 & = A + B(1-x).
 \end{align*}
 Áp dụng điều kiện biên:
 \begin{align*}
@@ -588,17 +631,71 @@ $
 $\\
 
 \textbf{Giải:}\\
-Phương trình đặc trưng cho $\mathcal{L} y = 0$
+Ta có toán tử Sturm-Liouville tác động lên hàm Green:
 \begin{align*}
-	x^2 r^2 + x r + (k^2 x^2 - 1) = 0,
+	\mathcal{L} G = \delta(x-\xi),
 \end{align*}
+với $x\neq \xi$:
 \begin{align*}
-	\Delta = b^2 - 4 a c = x^2 - 4 x^2 (k^2 x^2 - 1) = -4 k^2 x^4 + 5x^2  ,
+	\mathcal{L} G = 0.
 \end{align*}
-nghiệm tổng quát cho phương trình trên là:
+Ta đi giải phương trình thuần nhất cho $\mathcal{L} y = 0$, nghiệm tổng quát cho phương trình này là (Eq 16.5/p.594 Boas):
 \begin{align*}
-	y_1 (x) = continue
+	 & \begin{cases}
+		   y_{1} & = AJ_{1} (kx) + BN_{1} (kx) \rightarrow y_{1}(0) = 0 \rightarrow BN_{1}(0) = 0 \rightarrow B = 0                                     \\
+		   y_{2} & = CJ_{1} (kx) + DN_{1} (kx) \rightarrow y_{2}(1) = 0 \rightarrow CJ_{1} (k) + DN_{1} (k) = 0 \rightarrow C = \f{DN_{1}(k)}{J_{1}(k)}
+	   \end{cases} \\
+	 & \Rightarrow
+	\begin{cases}
+		y_{1} & = J_{1}(kx)                               \\
+		y_{2} & = N_{1}(k) J_{1}(kx) - J_{1}(k) N_{1}(kx)
+	\end{cases}
 \end{align*}
+Hàm Green sẽ có dạng, với $\alpha \atsmall{x = \xi}{}$
+\begin{align*}
+	 & \begin{cases}
+		   G(x,\xi) = A(\xi) J_{1}(kx) \quad \quad                                              & , x < \xi \\
+		   G(x,\xi) = B(\xi) \left[ N_{1}(k) J_{1}(kx) - J_{1}(k) N_{1}(kx) \right] \quad \quad & , x > \xi \\
+	   \end{cases} \\
+	 & \Rightarrow
+	\begin{cases}
+		G(\xi^{-},\xi) = G(\xi^{+},\xi) \\
+		\xi^2 \left[ G(\xi^{+},\xi) - G(\xi^{-},\xi) \right] = 1
+	\end{cases}
+\end{align*}
+$Wronskian$ cho $y_1,y_2$ là:
+\begin{align*}
+	W = y_1 y'_2 - y_2 y'_1 = J_{1}(k) \left[ -J_{1}(kx) N'_{1}(kx) + N_{1}(kx) J'_{1}(kx) \right]
+\end{align*}
+Vậy hàm Green có dạng là
+\begin{align*}
+	G(x,\xi) =
+	\begin{cases}
+		\begin{aligned}
+			\f{N_{1}(k) J_{1}(k\xi) - J_{1}(k) N_{1}(k\xi) }{\alpha W} J_{1}(kx) \quad \quad & , 0 < x < \xi \\
+			\noalign{\vskip9pt}
+			J_{1}(k\xi)\f{N_{1}(k) J_{1}(kx) - J_{1}(\xi) N_{1}(kx) }{\alpha W} \quad \quad  & , \xi < x < 1 \\
+		\end{aligned}
+	\end{cases}
+\end{align*}
+\subsubsection{10.1.6/p.457}
+\begin{align*}
+	\mathcal{L} = (1 - x^2) \f{d^2}{dx^2} - 2x \f{d}{dx}
+\end{align*}
+
+\textbf{Giải:}\\
+Với $x\neq \xi: \mathcal{L} G = 0$
+Ta đi giải phương trình thuần nhất $\mathcal{L} y =0 $, nghiệm tổng quát là
+\begin{align*}
+	y = A P_0(x) + \underbracket{B Q_0(x)}_{\text{phân kì tại}\; x = \pm 1}.
+\end{align*}
+Điều kiện hữu hạn
+\begin{align*}
+	G(\pm 1,\xi) \rightarrow finite
+\end{align*}
+ta có hai nghiệm động lập tuyến tính nhưng chỉ có 1 một nghiệm là thỏa điều kiện hữu hạn đó là $A P_0(x)$ (Ex p.566 Boas).
+
+
 \subsubsection{10.1.7/p.457}
 Tìm hàm Green cho
 \begin{align*}
@@ -636,32 +733,32 @@ Ta đi giải phương trình thuần nhất cho $\mathcal{L} \psi = 0$, ta tìm
 		      \psi(t) = \f{1}{\sqrt{k}} \int_{0}^{t} \sin(t-\tau) f(\tau) d\tau
 	      \end{align*}
 	\item  với $k < 0$\\
-	Ta được nghiệm là:  
-	\begin{align*}
-		y = A e^{kx} + B e^{-kx}
-	\end{align*}
-	Tại $t<\tau$,
-	áp dụng điều kiện biên:
-	\begin{align*}
-		\psi(0) &= A e^{k0} + B e^{-k0} = 0  \rightarrow A = - B \\
-		\psi'(0) &= Ak e^{k0} + Ak e^{-k0} = 0  \rightarrow A = 0
-	\end{align*}
-	tại $t = \tau$ ta áp dụng điều kiện biên. Khi $G =0$, $t<\tau$ ta có:
-	\begin{align*}
-		\psi(0) &= A e^{k0} + B e^{-k0} = 0  \rightarrow A = - B \\
-		\psi'(0) &= Ak e^{k0} + Ak e^{-k0} = \f{1}{\alpha}  \rightarrow A = \f{1}{2k}
-	\end{align*}
-	\begin{align*}
-		&\Rightarrow G(t,\tau) = \f{1}{2k} e^{kt} \\
-		&\Rightarrow y(t) = \f{1}{2k} \int_{0}^{t} e^{kt} f(\tau) d\tau \\
-	\end{align*}
+	      Ta được nghiệm là:
+	      \begin{align*}
+		      y = A e^{kx} + B e^{-kx}
+	      \end{align*}
+	      Tại $t<\tau$,
+	      áp dụng điều kiện biên:
+	      \begin{align*}
+		      \psi(0)  & = A e^{k0} + B e^{-k0} = 0  \rightarrow A = - B \\
+		      \psi'(0) & = Ak e^{k0} + Ak e^{-k0} = 0  \rightarrow A = 0
+	      \end{align*}
+	      tại $t = \tau$ ta áp dụng điều kiện biên. Khi $G =0$, $t<\tau$ ta có:
+	      \begin{align*}
+		      \psi(0)  & = A e^{k0} + B e^{-k0} = 0  \rightarrow A = - B                     \\
+		      \psi'(0) & = Ak e^{k0} + Ak e^{-k0} = \f{1}{\alpha}  \rightarrow A = \f{1}{2k}
+	      \end{align*}
+	      \begin{align*}
+		       & \Rightarrow G(t,\tau) = \f{1}{2k} e^{kt}                       \\
+		       & \Rightarrow y(t) = \f{1}{2k} \int_{0}^{t} e^{kt} f(\tau) d\tau \\
+	      \end{align*}
 \end{enumerate}
 \subsubsection{10.1.8/p.457}
-Chứng minh hàm Green sau 
+Chứng minh hàm Green sau
 \begin{align*}
 	G(x,x') = -\f{i}{2k}\exp (ik \abs{x - x'})
 \end{align*}
-là nghiệm của phương trình 
+là nghiệm của phương trình
 \begin{align*}
 	\left( \f{d^2}{dx^2} + k^2 \right) \psi(x) = g(x)
 \end{align*}
@@ -673,34 +770,154 @@ Ta đi giải phương trình đặc trưng cho $\mathcal{L} y = 0$
 \end{align*}
 với $\Delta = b^2 - 4ac = -4k^2 < 0$. Nên có nghiệm tổng quát là
 \begin{align*}
-	\psi_1(x) &= Ae^{ikx} + Be^{-ikx}, \\
-	\psi_2(x) &= Ae^{ik(1 - x)} + Be^{-ik(x-1)}.
+	\psi_1(x) & = Ae^{ikx} + Be^{-ikx},           \\
+	\psi_2(x) & = Ae^{ik(1 - x)} + Be^{-ik(x-1)}.
 \end{align*}
 Áp dụng điều kiên biên:
 \begin{align*}
-	&\psi_1(x\rightarrow -\infty) \rightarrow B = 0 \rightarrow \psi_1(x) = e^{ikx} \\
-	&\psi_2(x\rightarrow \infty) \rightarrow A = 0 \rightarrow \psi_2(x) = e^{-ikx}
+	 & \psi_1(x\rightarrow -\infty) \rightarrow B = 0 \rightarrow \psi_1(x) = e^{ikx} \\
+	 & \psi_2(x\rightarrow \infty) \rightarrow A = 0 \rightarrow \psi_2(x) = e^{-ikx}
 \end{align*}
 $Wronskian$ cho $\psi_1(x),\psi_2(x)$
 \begin{align*}
-	W = y_1 y'_2 - y_2 y'_1 = - 2ik
+	W = y_1 y'_2 - y_2 y'_1 = 2ik
 \end{align*}
 Hàm Green cho $\mathcal{L} y$ là:
 \begin{align*}
-	G(x,\xi) 
-	& = \f{1}{\alpha(\xi) W(\xi)} \left[ \Theta(\xi - x)y_{1}(x)y_{2}(\xi) + \Theta(x-\xi)y_{1}(\xi)y_{2}(x) \right] \\
-	& = \f{1}{-2ik} \left[ \Theta(\xi - x) e^{ikx} e^{-ik\xi} + \Theta(x-\xi) e^{ik\xi} e^{-ikx}  \right]
+	G(x,\xi)
+	 & = -\f{1}{\alpha(\xi) W(\xi)} \left[ \Theta(\xi - x)y_{1}(x)y_{2}(\xi) + \Theta(x-\xi)y_{1}(\xi)y_{2}(x) \right] \\
+	 & = \f{1}{2ik} \left[ \Theta(\xi - x) e^{ikx} e^{-ik\xi} + \Theta(x-\xi) e^{ik\xi} e^{-ikx}  \right].
+\end{align*}
+Đạo hàm bậc 1 của hàm Green
+\begin{align*}
+	G' =
+	\begin{cases}
+		\f{1}{2} e^{-ik(x - \xi)}  ,\quad \quad x < \xi \\
+		\noalign{\vskip9pt}
+		\f{1}{2} e^{ik(x - \xi)}  ,\quad \quad x > \xi  \\
+	\end{cases}
+\end{align*}
+đạo hàm bậc 2 có dạng là
+\begin{align*}
+	G'' =
+	\begin{cases}
+		\f{ik}{2} e^{-ik(x - \xi)} + \delta (x-\xi) , \\
+		\noalign{\vskip9pt}
+		\f{ik}{2} e^{ik(x - \xi)} + \delta (x-\xi).
+	\end{cases}
+\end{align*}
+\begin{align*}
+	\Rightarrow G'' + k^2 G = \delta (x - \xi).
 \end{align*}
 
+\subsubsection{10.1.10/p.458}
 
+Từ khai triển hàm riêng của hàm Green chứng minh
+\begin{enumerate}
+	\item[(a)] $\f{2}{\pi^2}$ 	$\dps\sum_{n = 1}^{\infty}$ $\f{\sin n\pi x \sin n\pi t}{n^2}$ =
+	$
+	\begin{cases}
+		x(1-t) ,\quad 0 \leq x < t,\\
+		t(1-x) ,\quad t < x \leq 1,\\
+	\end{cases}
+	$ 
+	\item[(b)] $\f{2}{\pi^2}$ 	$\dps\sum_{n = 1}^{\infty}$ $\f{\sin (n+\frac{1}{2})\pi x \sin (n+\frac{1}{2})\pi t}{(n+\frac{1}{2})^2}$ =
+	$
+	\begin{cases}
+		x ,\quad 0 \leq x < t,\\
+		t ,\quad t < x \leq 1,\\
+	\end{cases}
+	$ 
+\end{enumerate}
 
+\textbf{Giải}
+%\begin{enumerate}[label=(\alph*)]
+%	\item Ta có hàm Green 
+%	\begin{align}
+%		G(x,t) = \left[ \Theta(t - x)x(1-t) + \Theta(x - t)t(1-x) \right],
+%	\end{align}
+%	bên cạnh đó ta đã chứng minh được rằng hàm Green là toán tử tự phó thì có dạng
+%	\begin{align}
+%		G(x,t) = \sum_{n = 1}^{\infty} \f{1}{\lambda_n} Y_{n}(x) Y_{n}^{*}(t)
+%	\end{align}
+%	trong đó $\lambda_n$ là trị riêng của toán tử Sturm-Liouville. Ta khai triển phương trình trên theo phương trình (6.36. /D.Skinner). 
+%	\begin{align}
+%		\delta(x - t) = w(x) \sum_{n \in \mathbb{Z}}^{\infty} Y_{n}(x) Y_{n}^{*}(t).
+%	\end{align}
+%	Xem $t$ như là tham số, ta dẫn ra được khai triển hàm riêng của hàm Green là
+%	\begin{align}
+%		G(x,t) = \sum_{n \in \mathbb{Z}} \hat{G}_n(t) Y_n(x).
+%	\end{align}
+%	Áp dụng toán tử tự phó $\mathcal{L}$ ta có
+%	\begin{align}
+%		\mathcal{L} G = \sum_{n \in \mathbb{Z}} \hat{G}_n(t) \mathcal{L} Y_n(x) = w(x) \sum_{n \in \mathbb{Z}} \hat{G}_n(t) \lambda_n Y_n(x),
+%	\end{align}
+%	để điều này là một hàm $\delta(x - t)$ thì khai triển trên phải là thỏa định nghĩa $\mathcal{L} G = \delta(x-t)$ cho hàm Green, ta cần phải
+%	\begin{align}
+%		\hat{G}_n(t) = \f{1}{\lambda_n} Y_n^{*}(x).
+%	\end{align}
+%	
+%	Vì hàm Green là nghiệm duy nhất của phương trình $\mathcal{L} G(x,t) =\delta (x-t)$ thỏa điều kiện $G(a,t) = G(b,t) = 0$, vì thế khai triển (3.17) và (3.18) là giống nhau. Để kiểm chứng điều này, ta nhận thấy rằng $\mathcal{L}$ ở dạng
+%	\begin{align*}
+%		\mathcal{L}  = \alpha(x) \f{\partial^2}{\partial x^2} + \beta(x) \f{\partial}{\partial x} + \gamma(x)
+%	\end{align*}
+%	hai hệ số đầu tiên của phương trình trên có mối liên hệ là $\beta = d\alpha/dx $. Vì thế trong trường hợp này, thành phần $\alpha(t) W(t)$	 trong phương trình phải là hằng số khác \textit{không}. Để kiểm chứng điều này ta phải làm
+%	\begin{align*}
+%		\f{d}{dx}(aW) 
+%		& = a' W + a W = \beta (y_1 y'_2 - y'_1 y_2) + \alpha (y_1 y''_2 - y''_1 y_2) \\
+%		& =	0,	
+%	\end{align*}
+%	vậy nên $a(t)W(t)$ là hằng số, ta có thể viết lại phương trình (3.17) thành dạng
+%	\begin{align*}
+%		G(x,t) = \f{1}{c} \left[ \Theta(t - x)x(1-t) + \Theta(x - t)t(1-x) \right].
+%	\end{align*}	
+%\end{enumerate}
 
-
-
-
-
-
-
+\begin{enumerate}[label=(\alph*)]
+	\item Khai triển hàm Green như chuỗi Fourier $\sin$, ta có
+	\begin{align*}
+		G(x,t) = \sum_{n=1}^{\infty} g_n(t) \sin n\pi x.
+	\end{align*}
+	Hệ số Fourier được cho bởi
+	\begin{align*}
+		g_n(t) = 2 \left[ \int_{0}^{t}x(1-t) \sin n\pi x dx + \int_{t}^{1}t(1-x)\sin n\pi x dx \right],
+	\end{align*}
+	tích phân từng phần ta giải được
+	\begin{align*}
+		g_n(t) 
+		& = 2 \left[ (1-t)\left( -\f{t}{n\pi}\cos n\pi t + \f{1}{n^2 \pi^2} \sin n\pi t\right) + t\left( \f{1-t}{n \pi}\cos n\pi t - \f{1}{n^2\pi^2}\sin n\pi t \right) \right]\\
+		& = 2 \f{\sin n\pi t}{n^2 \pi^2}
+	\end{align*}
+	Thay vào hàm Green ta được
+	\begin{align*}
+		G(x,t) = \f{2}{\pi^2}\sum_{n=1}^{\infty} \f{\sin n\pi x \sin n\pi t}{n^2}
+	\end{align*}
+	\item Khai triển hàm Green như chuỗi Fourier $\cos$, ta có
+	\begin{align*}
+		G(x,t) = \sum_{n = 0}^{\infty} g_n(t) \cos n\pi x.
+	\end{align*}
+	Hệ số Fourier được cho bởi
+	\begin{align*}
+		g_n(t) 
+		& = 2 \left[ \int_{0}^{t}x \cos n\pi x dx + \int_{t}^{1}t\cos n\pi x dx \right]\\
+		& = 2 \left[ \f{t}{n\pi} \sin n\pi t + \f{\cos n\pi t - 1}{(n\pi)^2} - \f{t}{n\pi} \sin n \pi t \right] \\
+		& = 2 \f{\cos n\pi t - 1}{(n\pi)^2}
+	\end{align*}
+	Thay vô hàm Green ta được,
+	\begin{align*}
+		G(x,t) 
+		& = 2\sum_{n = 0}^{\infty} \f{\cos n\pi t - 1}{(n\pi)^2} \cos n\pi x
+	\end{align*}
+	khi xét giới hạn
+	\begin{align*}
+		\lim_{n\rightarrow \infty} \f{1}{(n\pi)^2} \rightarrow 0
+	\end{align*}
+	Nên hàm Green sẽ có dạng là 
+	\begin{align*}
+		G(x,t) 
+		& = 2\sum_{n = 0}^{\infty} \f{\cos n\pi t}{(n\pi)^2} \cos n\pi x
+	\end{align*}
+\end{enumerate}
 
 
 
