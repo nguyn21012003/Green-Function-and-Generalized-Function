@@ -1,0 +1,270 @@
+\documentclass{article}
+\usepackage[utf8]{vietnam}
+\usepackage[utf8]{inputenc}
+\usepackage{anyfontsize,fontsize}
+\changefontsize[13pt]{13pt}	
+\usepackage{commath}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{slashed}
+\usepackage{indentfirst}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{nccmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amsmath,systeme}
+\usepackage[thinc]{esdiff}
+\usepackage{hyperref}
+\usepackage{bm,physics}
+\usepackage{fancyhdr}
+%footnote
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}%
+\fancyhf{}%
+\fancyfoot[L]{Vật lý Lý thuyết}%
+\fancyfoot[C]{\hspace{4cm} \thepage}%
+
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+
+
+\newcommand{\image}[1]{
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{pic/#1}
+	\end{center}
+}
+\renewcommand{\l}{\ell}
+\newcommand{\dps}{\displaystyle}
+
+\newcommand{\f}[2]{\dfrac{#1}{#2}}
+\newcommand{\at}[2]{\bigg\rvert_{#1}^{#2} }
+
+
+\renewcommand{\baselinestretch}{2.0}
+
+
+\title{\Huge{Bài tập về nhà 1}}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=red,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={GF},
+	pdfpagemode=FullScreen,
+}
+
+\urlstyle{same}
+
+\begin{document}
+\setlength{\parindent}{20pt}
+\newpage
+\author{TRẦN KHÔI NGUYÊN \\ VẬT LÝ LÝ THUYẾT}
+\maketitle
+\noindent \textbf{Câu 1:}
+\begin{align*}
+	\f{\partial u}{\partial x} + y \f{\partial u}{\partial y} = \sin x,
+\end{align*}
+với điều kiện biên $u(x,0) = \cos x$. \\
+\textbf{Câu 2:}
+\begin{align*}
+	\f{\partial u}{\partial x} - \f{\partial u}{\partial y} = u^{2},
+\end{align*}
+với $u = 4$, dọc theo $y = 2x - 1$.\\
+\textbf{Câu 3:}
+\begin{align*}
+	\f{\partial u}{\partial x} + u \f{\partial u}{\partial y} = x,
+\end{align*}
+với điều kiện biên $u(y,0) = -2y, \forall x \in \mathbb{R}$. \\
+\textbf{Bài làm}\\
+\textbf{Câu 1:}
+The Lagrange - Charpit equations for the PDE are:
+\begin{align*}
+	 & \f{dx}{1} = \f{dy}{y} = \f{du}{\sin x} \\
+	 &
+	\Rightarrow
+	\begin{cases}
+		\f{dy}{dx} = y             \\
+		\f{du}{dy} = \f{\sin x}{y} \\
+		\f{du}{dx} = \f{\sin x}{1}
+	\end{cases}
+\end{align*}
+which leads to
+\begin{align*}
+	 & \f{dy}{y} = dx \Rightarrow \int \f{dy}{y} = \int dx \Rightarrow y = Ae^{x} \\
+	 & \f{du}{dy} = \f{\sin x}{y} \Rightarrow
+\end{align*}
+\textbf{Câu 2:}\\
+The Lagrange - Charpit equations for the PDE are:
+\begin{align*}
+	 & \f{dx}{1} = \f{dy}{-1} = \f{du}{u^{2}} \\
+	 &
+	\Rightarrow
+	\begin{cases}
+		\f{dy}{dx} = -1     \\
+		\f{du}{dy} = -u^{2} \\
+		\f{du}{dx} = u^{2}
+	\end{cases},
+\end{align*}
+this leads to:
+\begin{align*}
+	dy = - dx           & \Rightarrow y = -x + A                                    \\
+	-\f{du}{u^{2}} = dy & \Rightarrow \f{1}{u} = y + B \Rightarrow u = \f{1}{y + B}
+\end{align*}
+By applying the initial conditions.
+\begin{align*}
+	u(x,y) = u(x,2x - 1) = 4,
+\end{align*}
+we set
+\begin{align*}
+	\begin{cases}
+		(2x - 1)\at{x = \xi}{} = - x \at{x = \xi}{} + A \\
+		u = \f{1}{2x - 1 + B} \at{x = \xi}{} = 4
+	\end{cases}
+	\Rightarrow
+	\begin{cases}
+		A = 3 \xi - 1 \\
+		B = -2\xi + \f{5}{4}
+	\end{cases}
+	\Rightarrow
+	\begin{cases}
+		y = - x + 3\xi - 1 \\
+		u = \f{1}{y - 2\xi + \frac{5}{4}}
+	\end{cases}
+\end{align*}
+Eliminating $\xi$ from the second equation by using the first, this yield
+\begin{align*}
+	u(x,y) = \f{1}{y - \frac{2}{3}\left( y + x + 1 \right) + \frac{5}{4}}
+\end{align*}
+is solution of the PDE.\\
+\textbf{Câu 3:}
+%From the Lagrange - Charpit equations for the PDE, we have:
+%\begin{align*}
+%	\f{dx}{1} = \f{dy}{u} = \f{du}{x}
+%\end{align*}
+%Further, we have
+%\begin{align*}
+%	\begin{cases}
+%		\f{dy}{dx} = u        \\
+%		\f{du}{dy} = \f{x}{u} \\
+%		\f{du}{dx} = x
+%	\end{cases}
+%	\Rightarrow
+%	\begin{cases}
+%		dy = u dx   \\
+%		u du = x dy \\
+%		du = x dx   \\
+%	\end{cases}
+%	\Rightarrow
+%	\begin{cases}
+%		\dps\int dy =  \dps \int u dx  \\
+%		\dps \int u du = x\dps \int dy \\
+%		\dps \int du = \dps \int x dx
+%	\end{cases}
+%\end{align*}
+%this leads to
+%\begin{align*}
+%	\begin{cases}
+%		y = u x + A            \\
+%		\f{u^{2}}{2} = x y + B \\
+%		u = \f{x^{2}}{2} + C
+%	\end{cases}
+%	\Rightarrow
+%	\begin{cases}
+%		A = y - ux             \\
+%		B = \f{u^{2}}{2} - x y \\
+%		C = u - \f{x^{2}}{2}
+%	\end{cases}\tag{1}
+%\end{align*}
+%By applying the initial conditions $u (y,0) = -2y$(replace dummpy variable $y$ by $\xi$), we set equations (1)
+%\begin{align*}
+%	\begin{cases}
+%		A = 0 - (-2y) y \at{x = y =\xi}{}                                \\
+%		B = \f{4y^{2}}{2}\at{x = y = \xi}{} - x\at{x = y = \xi}{}\times0 \\
+%		C = \left(-2y - \f{x^{2}}{2}\right)\at{x=y=\xi}{}
+%	\end{cases}
+%	\Leftrightarrow
+%	\begin{cases}
+%		A = 2\xi^{2} \\
+%		B = 2\xi^{2} \\
+%		C = -2\xi - \frac{\xi^{2}}{2}
+%	\end{cases}
+%\end{align*}
+%Plugging $A,B$ into (1),
+%\begin{align*}
+%	y            & = ux + 2\xi^{2} \tag{2}                     \\
+%	\f{u^{2}}{2} & = xy + 2\xi^{2} = xy + y - ux \tag{3}       \\
+%	u            & = \frac{x^2}{2} + -2\xi - \frac{\xi^{2}}{2}
+%\end{align*}
+%Rearranging (3), we have
+%\begin{align*}
+%	u^{2} + 2 u x - 2 xy - 2y = 0,
+%\end{align*}
+%$\Delta = $
+%
+%\begin{align*}
+%	\f{\partial u}{\partial x} + u \f{\partial u}{\partial y} = x \Leftrightarrow \f{1}{x}\f{\partial u}{\partial x} + \f{u}{x}\f{\partial u}{\partial y} = 1
+%\end{align*}
+The value of function $u$ at an arbitrary $\xi$ on the initial curve ($s$ = 0) is given by $u(y,0) = -2y$. By replacing dummy variables $y \equiv \xi$, of courses, the initial condition now is $u(\xi,0) = -2\xi$.\\
+At $s = 0$, the curve starts at the initial point $(x = 0 , y = \xi)$.
+\begin{align*}
+	\f{dy}{ds} & = u  \quad\quad \text{with} \; y(s = 0) = \xi, \tag{1}   \\
+	\f{dx}{ds} & = 1  \quad\quad \text{with} \; x(s = 0) = 0, \tag{2}     \\
+	\f{du}{ds} & = x  \quad\quad \text{with} \; u(s = 0) = -2\xi. \tag{3}
+\end{align*}
+Consider equation (2)
+\begin{align*}
+	dx = ds \Rightarrow x = s + A .\tag{4}
+\end{align*}
+Next is equation (3)
+\begin{align*}
+	du = x ds \Rightarrow u = (s + A) ds \Rightarrow u = \f{s^{2}}{2} + s A + C \tag{5}
+\end{align*}
+Plugging $u$ into (1), this leads to
+\begin{align*}
+	dy = u ds = \left(\f{s^{2}}{2} + s A + C\right) ds \Rightarrow y = \f{s^{3}}{6} + \f{s^{2}A}{2} + C s +  B \tag{6}
+\end{align*}
+Apllying initial condition to (4),(5),(6)
+\begin{align*}
+	\begin{cases}
+		x(s = 0) = 0 = A   \\
+		y(s = 0) = \xi = B \\
+		u(s = 0) = -2\xi = C
+	\end{cases}
+	\Rightarrow
+	\begin{cases}
+		A = 0   \\
+		B = \xi \\
+		C = -2\xi
+	\end{cases}
+\end{align*}
+We have
+\begin{align*}
+	x & = s                           \\
+	y & = \f{s^{3}}{6} - 2\xi s + \xi =  \f{s^{3}}{6} - (2s + 1) \xi \\
+	u & = \f{s^{2}}{2} - 2\xi
+\end{align*}
+Eliminating $\xi$, this leads to
+\begin{align*}
+	x & = s                                             \\
+	\xi & = \f{\frac{x^{3}}{6} - y}{2s + 1}                  \\
+	u & = \f{x^{2}}{2} - 2 \left( \f{\frac{x^{3}}{6} - y}{2 + 1} \right) \tag{7}
+\end{align*}
+Symplyfing the Eqn.(7), we have
+\begin{align*}
+	u(x,y) = \f{x^{2}}{2} - \f{x^{3}}{6x + 3} + \f{2y}{2x + 1}
+\end{align*}
+which is the solution of the PDE
+
+
+
+
+\end{document}
