@@ -1,0 +1,103 @@
+\documentclass{report}
+\usepackage[utf8]{vietnam}
+\usepackage[utf8]{inputenc}
+\usepackage{anyfontsize,fontsize}
+\changefontsize[13pt]{13pt}
+\usepackage{commath}
+\usepackage[d]{esvect}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{slashed,cancel}
+\usepackage{indentfirst}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{upgreek}
+\usepackage{nccmath,nicematrix}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amsmath,systeme,bbold}
+\usepackage[thinc]{esdiff}
+\usepackage{hyperref}
+\usepackage{dirtytalk,bm,physics,upgreek}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+%footnote
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}%
+\fancyhf{}%
+\fancyfoot[L]{Vật lý Lý thuyết}%
+\fancyfoot[C]{\hspace{6.5cm} \thepage}%
+
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+
+
+\newcommand{\image}[1]{
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{pic/#1}
+	\end{center}
+}
+\renewcommand{\l}{\ell}
+\newcommand{\dps}{\displaystyle}
+
+\newcommand{\f}[2]{\dfrac{#1}{#2}}
+\newcommand{\at}[2]{\bigg\rvert_{#1}^{#2} }
+
+
+\renewcommand{\baselinestretch}{2.0}
+
+
+\title{\Huge{Homework 3}}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=red,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={QM3},
+	pdfpagemode=FullScreen,
+}
+
+\urlstyle{same}
+
+\begin{document}
+\setlength{\parindent}{20pt}
+\newpage
+\author{TRẦN KHÔI NGUYÊN \\ VẬT LÝ LÝ THUYẾT}
+\maketitle
+From previous studying we have
+\begin{gather}
+	\f{\partial^{2} \phi}{\partial t^{2}} - c^{2} \nabla^{2} \phi = F
+\end{gather}
+Assuming $\mathcal{L} = \alpha(x) \f{\partial^{2}}{\partial t^{2}} - c^{2} \nabla^{2}$ and $\mathcal{L} G(\mathbf{x},t;\mathbf{y};\tau) = \delta(t - \tau) \delta^{n}(\mathbf{x} - \mathbf{y})$, in which $\alpha = 1$, we have
+\begin{gather}
+	\left( \f{\partial^{2}}{\partial t^{2}} - c^{2} {\nabla}^{2} \right) G(\mathbf{x},t;\mathbf{y};\tau) = \delta(t - \tau) \delta^{n}(\mathbf{x} - \mathbf{y})
+\end{gather}
+By using initial conditions
+\begin{gather}
+	\phi(x,0) = 0,\\
+	\f{\partial \phi}{\partial t}(x,0) = 0.
+\end{gather}	
+Different equations of Eq .(2) 's type can be solved by the general solution (Skinner . Eq (7.3))
+\begin{gather}
+	\phi(\mathbf{x},t) = \int
+\end{gather}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+\end{document}
