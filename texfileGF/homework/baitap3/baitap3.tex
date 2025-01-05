@@ -1,4 +1,4 @@
-\documentclass{report}
+\documentclass{article}
 \usepackage[utf8]{vietnam}
 \usepackage[utf8]{inputenc}
 \usepackage{anyfontsize,fontsize}
@@ -16,7 +16,7 @@
 \usepackage{nccmath,nicematrix}
 \usepackage{mathtools}
 \usepackage{amsfonts}
-\usepackage{amsmath,systeme,bbold}
+\usepackage{amsmath,systeme}
 \usepackage[thinc]{esdiff}
 \usepackage{hyperref}
 \usepackage{dirtytalk,bm,physics,upgreek}
@@ -72,11 +72,11 @@
 \newpage
 \author{TRẦN KHÔI NGUYÊN \\ VẬT LÝ LÝ THUYẾT}
 \maketitle
-From previous studying we have
+From previous study we have
 \begin{gather}
 	\f{\partial^{2} \phi}{\partial t^{2}} - c^{2} \nabla^{2} \phi = F
 \end{gather}
-Assuming $\mathcal{L} = \alpha(x) \f{\partial^{2}}{\partial t^{2}} - c^{2} \nabla^{2}$ and $\mathcal{L} G(\mathbf{x},t;\mathbf{y};\tau) = \delta(t - \tau) \delta^{n}(\mathbf{x} - \mathbf{y})$, in which $\alpha = 1$, we have
+Set $\mathcal{L} = \alpha(x) \f{\partial^{2}}{\partial t^{2}} - c^{2} \nabla^{2}$ and $\mathcal{L} G(\mathbf{x},t;\mathbf{y};\tau) = \delta(t - \tau) \delta^{n}(\mathbf{x} - \mathbf{y})$, in which $\alpha = 1$, we have
 \begin{gather}
 	\left( \f{\partial^{2}}{\partial t^{2}} - c^{2} {\nabla}^{2} \right) G(\mathbf{x},t;\mathbf{y};\tau) = \delta(t - \tau) \delta^{n}(\mathbf{x} - \mathbf{y})
 \end{gather}
@@ -87,8 +87,542 @@ By using initial conditions
 \end{gather}	
 Different equations of Eq .(2) 's type can be solved by the general solution (Skinner . Eq (7.3))
 \begin{gather}
-	\phi(\mathbf{x},t) = \int
+	\phi(\mathbf{x},t) = \int_{0}^{\infty} \int_{\mathbb{R}^{n}} F(\mathbf{y}, \tau) G(\mathbf{x},t;\mathbf{y};\tau) d^{n} y\, d \tau,
 \end{gather}
+the Fourier transform of Eq. (5) with respect to the spatial variables $\mathbf{x}$ can be obtained by
+\begin{gather}
+	\mathcal{F} \left[\f{\partial^{2}}{\partial t^{2}} G(\mathbf{x},t;\mathbf{y};\tau)\right] = \f{\partial^{2}}{\partial t^{2}} \tilde{G}(\mathbf{x},t;\mathbf{y};\tau),\\
+	- c^{2}\mathcal{F}  \left[\nabla^{2} G(\mathbf{x},t;\mathbf{y};\tau)\right] = - c^{2} \int_{-\infty}^{+\infty} e^{-i k x} \nabla^{2} {G}(\mathbf{x},t;\mathbf{y};\tau) = k^{2} c^{2} \tilde{G}(\mathbf{x},t;\mathbf{y};\tau),\\
+	\mathcal{F} \left[ \delta^{n}(\mathbf{x} - \mathbf{y}) \right] = \int \delta^{n}(\mathbf{x} - \delta(t - \tau)\mathbf{y}) e^{-i \mathbf{k} \cdot \mathbf{x}} d^{n} {x} = \delta(t - \tau)e^{-i \mathbf{k} \cdot \mathbf{y}} \text{($\delta$ Dirac props.)}
+\end{gather} 
+We may now write Eq .(2) as 
+\begin{gather}
+	\f{\partial^{2}}{\partial t^{2}} \tilde{G}(\mathbf{x},t;\mathbf{y};\tau) + k^{2} c^{2} \tilde{G}(\mathbf{x},t;\mathbf{y};\tau)  = e^{-i \mathbf{k} \cdot \mathbf{y}} \delta(t - \tau).
+\end{gather}
+This equation have been mentioned in Eq .(7.51) in Skinner
+\begin{gather}
+	\mathcal{L} y = f(t).
+\end{gather}
+A general solution for this type equation for $t > \tau$ is 
+\begin{gather}
+	y = A\cos(\sqrt{k^{2} c^{2}}t) + B\sin(\sqrt{k^{2} c^{2}}t)
+\end{gather}	
+By applying initial conditions at $t = \tau$. Since $G = 0$ at $t < \tau$, we obtain
+\begin{gather}
+	G(t, \tau) = A\cos(\sqrt{k^{2} c^{2}}t) + B\sin(\sqrt{k^{2} c^{2}}t) = 0 \rightarrow C = 0\\
+	G^{'}(t, \tau) = \f{1}{\alpha} \rightarrow \sqrt{k^{2} c^{2}} B \cos 0 = 1 \Rightarrow B = \f{1}{\sqrt{k^{2} c^{2}}}
+\end{gather}
+in which $\alpha = 1$. We now write Green function as 
+\begin{gather}
+	\tilde{G} (\mathbf{k}, t; \mathbf{y},\tau) = \Theta(t - \tau) e^{-i \mathbf{k} \cdot \mathbf{y}} \f{\sin ( k c (t - \tau) )}{c k}. 
+\end{gather}
+Notice that we have parameterized $k$ then treat $t$ as our variable in the initial value problem, for symplicity we write $k \equiv \abs{\mathbf{k}}$ which will be explain in next compute. 
+
+We now may write Eq .(14) in the inverse Fourier transform form
+\begin{equation}
+	\begin{aligned}
+		G(\mathbf{x},t;\mathbf{y};\tau) 
+		&= \f{1}{(2\pi)^{n}} \int_{\mathbb{R}^{n}} e^{i \mathbf{k} \cdot \mathbf{x}} \tilde{G} (\mathbf{k}, t; \mathbf{y},\tau)  d^{n} k\\
+		&= \f{1}{(2\pi)^{n}} \int_{\mathbb{R}^{n}} e^{i \mathbf{k} \cdot \mathbf{x}} \Theta(t - \tau) e^{-i \mathbf{k} \cdot \mathbf{y}} \f{\sin ( k c (t - \tau) )}{c k}  d^{n} k\\
+		&= \f{\Theta(t - \tau)}{(2\pi)^{n}} \int_{\mathbb{R}^{n}} e^{i \mathbf{k} \cdot (\mathbf{x} - \mathbf{y})}   \f{\sin ( k c (t - \tau) )}{c k}  d^{n} k.
+	\end{aligned}
+\end{equation}	
+For symplicity, we choose $n = 3$, so that
+\begin{gather}
+	\abs{\mathbf{k}} = k,\\
+	\mathbf{k} \cdot (\mathbf{x} - \mathbf{y}) = k \abs{\mathbf{x} - \mathbf{y}} \cos \theta.
+\end{gather}	
+Thus, we may write the Green function in spherical symmetry, Eq .(15) becomes
+\begin{equation}
+	\begin{aligned}
+		G 
+		&= \f{\Theta(t - \tau)}{(2\pi)^{3}} \int_{0}^{\infty} \int_{0}^{\pi} \int_{0}^{2\pi} e^{ i k \abs{\mathbf{x} - \mathbf{y}} \cos \theta} \f{\sin kc(t - \tau)}{ck} k^{2} d\phi d\theta dk\\ 
+		&= \f{\Theta(t - \tau)}{c(2\pi)^{2}} \int_{0}^{\infty} \int_{0}^{\pi} e^{ i k \abs{\mathbf{x} - \mathbf{y}} \cos \theta} \sin kc(t - \tau) k d\theta dk\\ 
+		&= \f{\Theta(t - \tau)}{c(2\pi)^{2}} \int_{0}^{\infty} \left[ \int_{-1}^{1} e^{ i k \abs{\mathbf{x} - \mathbf{y}} \cos \theta} d \cos\theta \right] \sin kc(t - \tau) k  dk\\ 
+		&= \f{\Theta(t - \tau)}{c(2\pi)^{2}} 2 \pi i c \abs{\mathbf{x} - \mathbf{y}} \int e^{ i k \abs{\mathbf{x} - \mathbf{y}}} \sin kc(t - \tau) k  dk
+	\end{aligned}
+\end{equation}
+The intergral term has the form of inverse Fourier transform, expand the sin function as
+\begin{gather}
+	\sin(kc(t - \tau)) = \f{1}{2i} \left( e^{i k c (t - \tau)} - e^{-ikc (t -\tau)} \right),
+\end{gather}
+plugging into the intergral term we have
+\begin{equation}
+	\begin{aligned}
+		\int e^{ i k \abs{\mathbf{x} - \mathbf{y}}} \sin kc(t - \tau) k  dk 
+		&= \f{1}{2i} \int e^{ik \abs{\mathbf{x - y}} + c(t -\tau)} k dk  - \f{1}{2i} \int e^{ik \abs{\mathbf{x - y}} - c(t - \tau)} k dk\\
+		&= -2 \pi i \delta( \abs{\mathbf{x - y}} + c (t - \tau)) + 2 \pi i \delta( \abs{\mathbf{x - y}} - c (t - \tau)),
+	\end{aligned}
+\end{equation}
+therefore the Green fucntion now is
+\begin{equation}
+	\begin{aligned}
+		G 
+		&=   \f{\Theta (t - \tau)}{4\pi c \abs{\mathbf{x - y}}} \left[ \delta( \abs{\mathbf{x - y}} + c(t - \tau)) - \delta( \abs{\mathbf{x - y}} - c(t - \tau)) \right].\\
+	\end{aligned}
+\end{equation}
+notice that in the delta Dirac function the argument already ensures that $t - \tau > 0$ so we do not neither the $\Theta$-function nor the first $\delta$-function
+\begin{gather}
+	G = \f{1}{4\pi c \abs{\mathbf{x - y}}} \left[ - \delta( \abs{\mathbf{x - y}} - c(t - \tau)) \right]
+\end{gather}
+Therefore, the general solution to $\mathcal{L} \phi = F$	obeying initial conditions is
+\begin{equation}
+	\begin{aligned}
+		\phi(\mathbf{x},t) 
+		&= \int_{0}^{t} \f{1}{4\pi c} \int_{\mathbb{R}^{n}} G F(\mathbf{y},\tau) d^{n}\, y d\tau \\
+		&= -\f{1}{4 \pi c^{2}} \int_{\mathbb{R}^{n}} \f{F(\mathbf{y},\tau)}{\abs{\mathbf{x - y}}} \delta\left( \abs{\mathbf{x - y}} - c(t - \tau) \right) d^{n}y\, d\tau
+	\end{aligned}
+\end{equation}
+This is the solution of forced wave equation in 3+1 dimensions. The general solution to the forced wave equation with homogeneous boundary conditions in 1+1 dimensions can be obtained by re-using Eq .(15) with choosing $n = 1$
+\begin{equation}
+	\begin{aligned}
+		G(x,t;y,\tau)
+		& = \f{\Theta(t - \tau)}{2\pi} \int e^{ik(x-y)} \f{\sin( kc (t - \tau))}{ck} dk,
+	\end{aligned}
+\end{equation}
+expand the sin function as
+\begin{gather}
+	\sin(kc (t - \tau)) = \f{1}{2i} \left( e^{ikc (t - \tau)} - e^{-ikc (t - \tau)} \right)
+\end{gather}	
+we now have
+\begin{equation}
+	\begin{aligned}
+		G(x,t;y,\tau)
+		& = \f{\Theta(t - \tau)}{4 i c\pi} \int \f{1}{k} \left( e^{i k(x - y + c(t - \tau))} + e^{i k(x - y + c(t - \tau))} \right) dk\\
+		& = \f{\Theta(t - \tau)}{4 i c\pi} 2\pi i \left[ \delta( \abs{{x - y}} + c(t - \tau)) - \delta( \abs{{x - y}} - c(t - \tau)) \right]\\
+		&= \f{1}{2c} \left[ \delta( \abs{{x - y}} + c(t - \tau)) - \delta( \abs{{x - y}} - c(t - \tau)) \right]
+	\end{aligned}
+\end{equation}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

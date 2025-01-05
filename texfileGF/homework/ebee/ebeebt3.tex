@@ -1,0 +1,617 @@
+\documentclass{report}
+\usepackage[utf8]{vietnam}
+\usepackage[utf8]{inputenc}
+\usepackage{anyfontsize,fontsize}
+\changefontsize[13pt]{13pt}
+\usepackage{commath}
+\usepackage[d]{esvect}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{slashed,cancel}
+\usepackage{indentfirst}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{upgreek}
+\usepackage{nccmath,nicematrix}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amsmath,systeme}
+\usepackage[thinc]{esdiff}
+\usepackage{hyperref}
+\usepackage{dirtytalk,bm,physics,upgreek}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+%footnote
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}%
+\fancyhf{}%
+\fancyfoot[L]{Vật lý Lý thuyết}%
+\fancyfoot[C]{\hspace{6.5cm} \thepage}%
+
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+
+
+\newcommand{\image}[1]{
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{pic/#1}
+	\end{center}
+}
+\renewcommand{\l}{\ell}
+\newcommand{\dps}{\displaystyle}
+
+\newcommand{\f}[2]{\dfrac{#1}{#2}}
+\newcommand{\at}[2]{\bigg\rvert_{#1}^{#2} }
+
+
+\renewcommand{\baselinestretch}{2.0}
+
+
+\title{\Huge{Homework 3}}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=red,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={QM3},
+	pdfpagemode=FullScreen,
+}
+
+\urlstyle{same}
+
+\begin{document}
+	\setlength{\parindent}{20pt}
+	\newpage
+	\author{TRẦN KHÔI NGUYÊN \\ VẬT LÝ LÝ THUYẾT}
+	\maketitle
+	Ta có
+	\begin{gather}
+		\f{\partial^{2} \phi}{\partial t^{2}} - c^{2} \nabla^{2} \phi = F
+	\end{gather}
+	Đặt $\mathcal{L} = \alpha(x) \f{\partial^{2}}{\partial t^{2}} - c^{2} \nabla^{2}$ and $\mathcal{L} G(\mathbf{x},t;\mathbf{y};\tau) = \delta(t - \tau) \delta^{n}(\mathbf{x} - \mathbf{y})$, với $\alpha = 1$, ta được
+	\begin{gather}
+		\left( \f{\partial^{2}}{\partial t^{2}} - c^{2} {\nabla}^{2} \right) G(\mathbf{x},t;\mathbf{y};\tau) = \delta(t - \tau) \delta^{n}(\mathbf{x} - \mathbf{y})
+	\end{gather}
+	Áp dụng điều kiện đầu
+	\begin{gather}
+		\phi(x,0) = 0,\\
+		\f{\partial \phi}{\partial t}(x,0) = 0.
+	\end{gather}	
+	Ta có nghiệm tổng quát cho phương trình trên là
+	\begin{gather}
+		\phi(\mathbf{x},t) = \int_{0}^{\infty} \int_{\mathbb{R}^{n}} F(\mathbf{y}, \tau) G(\mathbf{x},t;\mathbf{y};\tau) d^{n} y\, d \tau,
+	\end{gather}
+	sử dụng phép biến đổi Fourier cho phương trình (5) theo biến $\mathbf{x}$, ta có
+	\begin{gather}
+		\mathcal{F} \left[\f{\partial^{2}}{\partial t^{2}} G(\mathbf{x},t;\mathbf{y};\tau)\right] = \f{\partial^{2}}{\partial t^{2}} \tilde{G}(\mathbf{x},t;\mathbf{y};\tau),\\
+		- c^{2}\mathcal{F}  \left[\nabla^{2} G(\mathbf{x},t;\mathbf{y};\tau)\right] = - c^{2} \int_{-\infty}^{+\infty} e^{-i k x} \nabla^{2} {G}(\mathbf{x},t;\mathbf{y};\tau) = k^{2} c^{2} \tilde{G}(\mathbf{x},t;\mathbf{y};\tau),\\
+		\mathcal{F} \left[ \delta^{n}(\mathbf{x} - \mathbf{y}) \right] = \int \delta^{n}(\mathbf{x} - \delta(t - \tau)\mathbf{y}) e^{-i \mathbf{k} \cdot \mathbf{x}} d^{n} {x} = \delta(t - \tau)e^{-i \mathbf{k} \cdot \mathbf{y}} \text{($\delta$ Dirac props.)}
+	\end{gather} 
+	Ta có thể viết lại phương trình (2) dưới dạng
+	\begin{gather}
+		\f{\partial^{2}}{\partial t^{2}} \tilde{G}(\mathbf{x},t;\mathbf{y};\tau) + k^{2} c^{2} \tilde{G}(\mathbf{x},t;\mathbf{y};\tau)  = e^{-i \mathbf{k} \cdot \mathbf{y}} \delta(t - \tau).
+	\end{gather}
+	Mà
+	\begin{gather}
+		\mathcal{L} y = f(t).
+	\end{gather}
+	Nghiệm tổng quát cho phương trình $t > \tau$ là
+	\begin{gather}
+		y = A\cos(\sqrt{k^{2} c^{2}}t) + B\sin(\sqrt{k^{2} c^{2}}t).
+	\end{gather}	
+	Sử dụng điều kiện đầu tại $t = \tau$. Mà $G = 0$ tại $t < \tau$, ta có
+	\begin{gather}
+		G(t, \tau) = A\cos(\sqrt{k^{2} c^{2}}t) + B\sin(\sqrt{k^{2} c^{2}}t) = 0 \rightarrow C = 0\\
+		G^{'}(t, \tau) = \f{1}{\alpha} \rightarrow \sqrt{k^{2} c^{2}} B \cos 0 = 1 \Rightarrow B = \f{1}{\sqrt{k^{2} c^{2}}}
+	\end{gather}
+	đã biết $\alpha = 1$. Ta có hàm Green là 
+	\begin{gather}
+		\tilde{G} (\mathbf{k}, t; \mathbf{y},\tau) = \Theta(t - \tau) e^{-i \mathbf{k} \cdot \mathbf{y}} \f{\sin ( k c (t - \tau) )}{c k}. 
+	\end{gather}
+	Trong đó ta đã tham số hoá $k$ và xem $t$ như là biến của bài toán điều kiện đầu.
+	
+	Sử dụng phép biến đổi Fourier ngược
+	\begin{equation}
+		\begin{aligned}
+			G(\mathbf{x},t;\mathbf{y};\tau) 
+			&= \f{1}{(2\pi)^{n}} \int_{\mathbb{R}^{n}} e^{i \mathbf{k} \cdot \mathbf{x}} \tilde{G} (\mathbf{k}, t; \mathbf{y},\tau)  d^{n} k\\
+			&= \f{1}{(2\pi)^{n}} \int_{\mathbb{R}^{n}} e^{i \mathbf{k} \cdot \mathbf{x}} \Theta(t - \tau) e^{-i \mathbf{k} \cdot \mathbf{y}} \f{\sin ( k c (t - \tau) )}{c k}  d^{n} k\\
+			&= \f{\Theta(t - \tau)}{(2\pi)^{n}} \int_{\mathbb{R}^{n}} e^{i \mathbf{k} \cdot (\mathbf{x} - \mathbf{y})}   \f{\sin ( k c (t - \tau) )}{c k}  d^{n} k.
+		\end{aligned}
+	\end{equation}	
+	với $n = 3$
+	\begin{gather}
+		\abs{\mathbf{k}} = k,\\
+		\mathbf{k} \cdot (\mathbf{x} - \mathbf{y}) = k \abs{\mathbf{x} - \mathbf{y}} \cos \theta.
+	\end{gather}	
+	viết lại phương trình (15) dưới hệ toạ độ cầu
+	\begin{equation}
+		\begin{aligned}
+			G 
+			&= \f{\Theta(t - \tau)}{(2\pi)^{3}} \int_{0}^{\infty} \int_{0}^{\pi} \int_{0}^{2\pi} e^{ i k \abs{\mathbf{x} - \mathbf{y}} \cos \theta} \f{\sin kc(t - \tau)}{ck} k^{2} d\phi d\theta dk\\ 
+			&= \f{\Theta(t - \tau)}{c(2\pi)^{2}} \int_{0}^{\infty} \int_{0}^{\pi} e^{ i k \abs{\mathbf{x} - \mathbf{y}} \cos \theta} \sin kc(t - \tau) k d\theta dk\\ 
+			&= \f{\Theta(t - \tau)}{c(2\pi)^{2}} \int_{0}^{\infty} \left[ \int_{-1}^{1} e^{ i k \abs{\mathbf{x} - \mathbf{y}} \cos \theta} d \cos\theta \right] \sin kc(t - \tau) k  dk\\ 
+			&= \f{\Theta(t - \tau)}{c(2\pi)^{2}} 2 \pi i c \abs{\mathbf{x} - \mathbf{y}} \int e^{ i k \abs{\mathbf{x} - \mathbf{y}}} \sin kc(t - \tau) k  dk
+		\end{aligned}
+	\end{equation}
+	mà
+	\begin{gather}
+		\sin(kc(t - \tau)) = \f{1}{2i} \left( e^{i k c (t - \tau)} - e^{-ikc (t -\tau)} \right),
+	\end{gather}
+	thế vào tích phân ta có
+	\begin{equation}
+		\begin{aligned}
+			\int e^{ i k \abs{\mathbf{x} - \mathbf{y}}} \sin kc(t - \tau) k  dk 
+			&= \f{1}{2i} \int e^{ik \abs{\mathbf{x - y}} + c(t -\tau)} k dk  - \f{1}{2i} \int e^{ik \abs{\mathbf{x - y}} - c(t - \tau)} k dk\\
+			&= -2 \pi i \delta( \abs{\mathbf{x - y}} + c (t - \tau)) + 2 \pi i \delta( \abs{\mathbf{x - y}} - c (t - \tau)),
+		\end{aligned}
+	\end{equation}
+	ta có hàm Green
+	\begin{equation}
+		\begin{aligned}
+			G 
+			&=   \f{\Theta (t - \tau)}{4\pi c \abs{\mathbf{x - y}}} \left[ \delta( \abs{\mathbf{x - y}} + c(t - \tau)) - \delta( \abs{\mathbf{x - y}} - c(t - \tau)) \right].\\
+		\end{aligned}
+	\end{equation}
+\begin{gather}
+	G = \f{1}{4\pi c \abs{\mathbf{x - y}}} \left[ - \delta( \abs{\mathbf{x - y}} - c(t - \tau)) \right]
+\end{gather}
+Vậy ta có dạng nghiệm là
+\begin{equation}
+	\begin{aligned}
+		\phi(\mathbf{x},t) 
+		&= \int_{0}^{t} \f{1}{4\pi c} \int_{\mathbb{R}^{n}} G F(\mathbf{y},\tau) d^{n}\, y d\tau \\
+		&= -\f{1}{4 \pi c^{2}} \int_{\mathbb{R}^{n}} \f{F(\mathbf{y},\tau)}{\abs{\mathbf{x - y}}} \delta\left( \abs{\mathbf{x - y}} - c(t - \tau) \right) d^{n}y\, d\tau
+	\end{aligned}
+\end{equation}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+\end{document}
