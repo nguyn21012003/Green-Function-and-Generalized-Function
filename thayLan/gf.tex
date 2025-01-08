@@ -1,0 +1,748 @@
+\documentclass{article}
+\usepackage[utf8]{vietnam}
+\usepackage[utf8]{inputenc}
+\usepackage{anyfontsize,fontsize}
+\changefontsize[13pt]{13pt}
+\usepackage{commath}
+\usepackage[d]{esvect}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{slashed,cancel}
+\usepackage{indentfirst}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{upgreek}
+\usepackage{nccmath,nicematrix}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amsmath,systeme}
+\usepackage[thinc]{esdiff}
+\usepackage{hyperref}
+\usepackage{dirtytalk,bm,physics,upgreek}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+%footnote
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}%
+\fancyhf{}%
+\fancyfoot[L]{Vật lý Lý thuyết}%
+\fancyfoot[C]{\hspace{6.5cm} \thepage}%
+
+
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+
+
+\newcommand{\image}[1]{
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{pic/#1}
+	\end{center}
+}
+\renewcommand{\l}{\ell}
+\newcommand{\dps}{\displaystyle}
+
+\newcommand{\f}[2]{\dfrac{#1}{#2}}
+\newcommand{\ft}[1]{\mathcal{F}[#1]}
+\newcommand{\at}[2]{\bigg\rvert_{#1}^{#2} }
+
+
+\renewcommand{\baselinestretch}{2.0}
+
+
+\title{\Huge{Hàm Green}}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=red,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	pdftitle={QM3},
+	pdfpagemode=FullScreen,
+}
+
+\urlstyle{same}
+
+\begin{document}
+\setlength{\parindent}{20pt}
+\newpage
+\author{TRẦN KHÔI NGUYÊN \\ VẬT LÝ LÝ THUYẾT}
+%\maketitle
+\section{Fourier Transform}
+\subsection{Hàm phức}
+\textbf{Residue}
+\subsection{Fourier transform}
+Chuỗi Fourier
+\begin{equation}
+	\begin{aligned}
+		f(x) = \f{1}{2L} \sum_{n \in \mathbb{Z}} f_{n} e^{i \pi n x / L} \\
+		\Leftrightarrow f_{n} = \f{1}{2\pi} \int_{-\pi}^{\pi} e^{-i n x} f(x) dx,
+	\end{aligned}
+\end{equation}
+từ một hàm không tuần hoàn $f: \mathbb{R} \rightarrow \mathbb{C}$
+\begin{gather}
+	\tilde{f}(k) = \int_{-\infty}^{+\infty} e^{-ikx}f(x) dx
+\end{gather}
+\subsubsection*{Tính chất}
+\begin{gather}
+	\mathcal{F} [ c_{1} f + c_{2} g ] = c_{1} \mathcal{F}[f] + c_{2} \mathcal{F}[g]\\
+	\mathcal{F} [ f(x - a) ] = e^{-i k a} \tilde{f}(k) \\
+	\mathcal{F} [ e^{ilx} f(x)] = \tilde{f} (k - l)\\
+	\mathcal{F} [f(cx)] = \f{1}{\abs{c}} \tilde{f} \left( \f{k}{c} \right)
+\end{gather}
+Tích chập
+\begin{equation}
+	\begin{aligned}
+		\left(f * g\right)(x) = \int_{-\infty}^{+\infty} f(x - y)g(y) dy \\
+		\Rightarrow \mathcal{F}[f * g](x) = \mathcal{F}[f](k) \mathcal{F}[g](k)
+	\end{aligned}
+\end{equation}
+Phép biến đổi Fourier đạo hàm
+\begin{gather}
+	\mathcal{F}[f'(x)] = \int_{-\infty}^{+\infty} e^{-i k x} f'(x) dx = \int_{-\infty}^{+\infty} \left( \f{d}{dx} e^{- i k x} \right) f(x) dx = i k \tilde{f}(k)\\
+	\mathcal{F}[x f(x)] = \int_{-\infty}^{+\infty} e^{-ikx} f(x) dx = i \f{d}{dk} \int_{-\infty}^{+\infty} e^{ikx} f(x) dx = i \tilde{f}' (k)
+\end{gather}
+Toán tử đạo hàm
+\begin{gather}
+	\mathcal{L}(\partial) = \sum_{r}^{p} c_{r} \f{d^{r}}{dx^{r}}
+\end{gather}
+biến đổi Fourier
+\begin{gather}
+	\mathcal{F}[\mathcal{L}(\partial)y] = \tilde{y}(k)\\
+	\mathcal{L}(ik) = \sum_{r = 0}^{p} c_{r} (ik)^{r}
+\end{gather}
+Nếu $y$ tuân theo phương trình vi phân $\mathcal{L}(\partial) y(x) = f(x)$ thì
+\begin{gather}
+	\tilde{y}(k) = \f{\tilde{f}(k)}{\mathcal{L}(ik)}
+\end{gather}
+và Fourier ngược của nó là
+\begin{gather}
+	f(x) = \f{1}{2\pi} \int_{-\infty}^{+\infty} e^{ikx} \tilde{f}(k) dk
+\end{gather}
+\textbf{Ex}\\
+Ta có phương trình đạo hàm riêng
+\begin{gather}
+	\nabla^{2} \phi(\mathbf{x}) - m^{2} \phi(\mathbf{x}) = - \rho(\mathbf{x})
+\end{gather}
+Thực hiện Fourier 2 vế
+\begin{equation}
+	\begin{aligned}
+		\ft{\nabla^{2} \phi(\mathbf{x})} - m^{2} \ft{\phi(x)} = - \ft{\rho(x)}                  \\
+		\Rightarrow \mathcal{L}(ik) \tilde{\phi}(k) - m^{2} \tilde{\phi}(k) = - \tilde{\rho}(k) \\
+		\Rightarrow (ik)^{2} \tilde{\phi}(k) - m^{2} \tilde{\phi}(k) = - \tilde{\rho}(k)
+		\Rightarrow \tilde{\phi}(k) = \f{\tilde{\rho}(x)}{\abs{k}^{2} + m^{2}}
+	\end{aligned}
+\end{equation}
+\textbf{Bài tập}\\
+Thực hiện phép biến đổi Fourier cho các hàm số sau
+\begin{itemize}
+	\item[a)] $f(x) = e^{-ax}$ (a>0)
+	\item[b)] $f(x) = e^{-x^{2} / 2}$ sử dụng cách tính trực tiếp và tính chất $x f(x) = - f'(x)$
+	\item[c)] $f(x) = x e^{-ax^{2} /2}$ sử dụng kết quả câu b).
+\end{itemize}
+%\textbf{8.79} Chứng minh
+%\begin{gather}
+%	\f{1}{N} \sum_{j = 0}^{N-1} \omega
+%\end{gather}	
+\section{PDE}
+\textbf{Giải PDE bậc 1 bằng phương pháp đường đặc trưng}
+\begin{gather}
+	a(x,y)\f{\partial \phi}{\partial x} b(x,y) \f{\partial \phi}{\partial y} + c(x,y) \phi = f(x,y)
+\end{gather}
+Ta không cần quan tâm đến hàm tự do $c$. Phương trình trên đơn giản là
+\begin{gather}
+	a \partial_{x} \phi + b \partial_{y} \phi = f(x,y)
+\end{gather}
+Nếu $f(x,y) = 0$ phương trình dịch chuyển. Nếu $f(x,y) \neq 0$ phương trình PDE đối lưu bậc 2, ta sẽ sử dụng phương pháp hàm riêng hoặc biến đổi Fourier để giải.
+\textbf{Ex}\\
+Cho phương trình
+\begin{gather}
+	2 \partial_{x} \phi + \partial_{y} \phi = 0; \quad \quad \phi(0,y) = e^{y}
+\end{gather}
+Phương trình Largrange - Charpit cho ta
+\begin{gather}
+	\begin{cases}
+		\f{dx}{ds} = 2 \\
+		\f{dy}{ds} = 1
+	\end{cases}
+	\Rightarrow
+	\begin{cases}
+		x = 2s + c \\
+		y = s + d
+	\end{cases}\\
+	\rightarrow x = 2(y - d) + c = 2y + C\\
+	\Rightarrow
+	\begin{cases}
+		x - 2 y = C \\
+		\phi(x,y) = D
+	\end{cases}
+	\rightarrow D = f(C) \rightarrow \phi(x,y) = f(x-2y)
+\end{gather}
+Ta phải thông số hoá điều kiện biên hoặc điều kiện đầu qua một hàm số theo biến $t$ trên đường $B$, sao cho đường $B$ này cắt $C$ tại $s = 0$ tại các $t$ khác nhau $\rightarrow$ các nghiệm khác nhau:
+\begin{gather}
+	C_{t} = \left\{ (x = x(s,t)); y = y(s,t) \in \mathbb{R}^{2} \right\}
+\end{gather}
+\textbf{EX2:} 
+Cho phương trình
+\begin{gather}
+	\partial_x \phi = 0\\
+	\phi(0,y) = f(y) \quad \quad \text{điều kiện đầu}
+\end{gather}
+Phương trình Largrange - Charpit cho ta
+\begin{gather}
+	\begin{cases}
+		\f{dx}{ds} = 1\\
+		\f{dy}{ds} = 0
+	\end{cases}
+	\rightarrow
+	\begin{cases}
+		x = s + c(t)\\
+		y = d(t)
+	\end{cases}
+	\rightarrow
+	\begin{cases}
+		x = s + c = 0\\
+		y = d = t
+	\end{cases}
+\end{gather}
+Ta chọn $s = 0$, gốc toạ độ trong biểu diễn $s \in \mathbb{R}$, ta có
+\begin{gather}
+	\begin{cases}
+		c = 0\\
+		d = t
+	\end{cases}
+\end{gather}
+Áp dụng điều kiện biên, ta có
+\begin{gather}
+	\begin{cases}
+		x = 0\\
+		y = t
+	\end{cases}
+	\rightarrow \phi(0,t) = f(t) \Rightarrow C_{t} \left\{ ( x = s, y = t ) \in \mathbb{R}^{2} \right\}
+\end{gather}
+Khi đó:
+\begin{gather}
+	\phi(s,t) \rightarrow \f{\partial \phi}{\partial s} \at{t}{} = 0 \rightarrow \phi(s,t) = g(t) = f(t)
+\end{gather}
+\textbf{EX3:} Cho phương trình 
+\begin{gather}
+	e^{x} \partial_{x} \phi + \partial_{y} \phi = 0
+\end{gather} 
+Điều kiện biên
+\begin{gather}
+	\phi(x,0) = \cosh x
+\end{gather}
+Từ phương trình Largrange - Charpit ta có
+\begin{gather}
+	\begin{cases}
+		\f{dx}{ds} = e^{x}\\
+		\f{dy}{ds} = 1
+	\end{cases}
+	\rightarrow
+	\begin{cases}
+		e^{-x} = -s + c(t)\\
+		y = s d(t)
+	\end{cases}
+	\rightarrow
+	\begin{cases}
+		e^{-t} = c(t)
+		0 = d(t)
+	\end{cases}
+	\rightarrow
+	\begin{cases}
+		e^{-x} = -s + e^{-t}\\
+		y = s
+	\end{cases}
+\end{gather}
+Từ đó ta có
+\begin{gather}
+	\begin{cases}
+		t = -\ln(e^{-x} + y)\\
+		s = y
+	\end{cases}
+\end{gather}
+Cuối cùng 
+\begin{gather}
+	\f{\partial \phi}{\partial s} \at{t}{} = 0 \rightarrow \phi(s,t) = g(t) = \cosh \left[ e^{-x} + y \right]
+\end{gather}
+\section{Method of Characteristics for Quasilinear PDE}
+\begin{gather}
+	a(x,y,u) \partial_{x} u + b(x,y,u) \partial_{y} u = c(x,y,u)
+\end{gather}
+Phương trình Largrange - Charpit 
+\begin{gather}
+	\f{dx}{a} = \f{dy}{b} = \f{du}{c}
+\end{gather}
+Nghiệm của phương trình tựa tuyến tính có thể được biểu diện thông qua mô tả của mặt phẳng tiếp tuyến dựa trên độ dốc của bề mặt này, ta có thể viết lại phương trình LC thành
+\begin{equation}
+	\begin{aligned}
+		\f{du}{dx} = \f{c}{a}\\
+		\f{du}{dy} = \f{c}{b}
+	\end{aligned}
+\end{equation}
+\textbf{EX1:}
+\begin{align*}
+	\f{\partial u}{\partial x} - \f{\partial u}{\partial y} = u^{2},
+\end{align*}
+với $u = 4$, dọc theo $y = 2x - 1$.\\
+\textbf{EX2:}
+\begin{align*}
+	\f{\partial u}{\partial x} + u \f{\partial u}{\partial y} = x,
+\end{align*}
+với điều kiện biên $u(y,0) = -2y, \forall x \in \mathbb{R}$. \\
+\textbf{Bài làm}\\
+\textbf{EX1:}\\
+The Lagrange - Charpit equations for the PDE are:
+\begin{align*}
+	& \f{dx}{1} = \f{dy}{-1} = \f{du}{u^{2}} \\
+	&
+	\Rightarrow
+	\begin{cases}
+		\f{dy}{dx} = -1     \\
+		\f{du}{dy} = -u^{2} \\
+		\f{du}{dx} = u^{2}
+	\end{cases},
+\end{align*}
+this leads to:
+\begin{align*}
+	dy = - dx           & \Rightarrow y = -x + A                                    \\
+	-\f{du}{u^{2}} = dy & \Rightarrow \f{1}{u} = y + B \Rightarrow u = \f{1}{y + B}
+\end{align*}
+By applying the initial conditions.
+\begin{align*}
+	u(x,y) = u(x,2x - 1) = 4,
+\end{align*}
+we set
+\begin{align*}
+	\begin{cases}
+		(2x - 1)\at{x = \xi}{} = - x \at{x = \xi}{} + A \\
+		u = \f{1}{2x - 1 + B} \at{x = \xi}{} = 4
+	\end{cases}
+	\Rightarrow
+	\begin{cases}
+		A = 3 \xi - 1 \\
+		B = -2\xi + \f{5}{4}
+	\end{cases}
+	\Rightarrow
+	\begin{cases}
+		y = - x + 3\xi - 1 \\
+		u = \f{1}{y - 2\xi + \frac{5}{4}}
+	\end{cases}
+\end{align*}
+Eliminating $\xi$ from the second equation by using the first, this yield
+\begin{align*}
+	u(x,y) = \f{1}{y - \frac{2}{3}\left( y + x + 1 \right) + \frac{5}{4}}
+\end{align*}
+is solution of the PDE.\\
+\textbf{EX2:}
+The value of function $u$ at an arbitrary $\xi$ on the initial curve ($s$ = 0) is given by $u(y,0) = -2y$. By replacing dummy variables $y \equiv \xi$, of courses, the initial condition now is $u(\xi,0) = -2\xi$.\\
+At $s = 0$, the curve starts at the initial point $(x = 0 , y = \xi)$.
+\begin{align*}
+	\f{dy}{ds} & = u  \quad\quad \text{with} \; y(s = 0) = \xi, \tag{1}   \\
+	\f{dx}{ds} & = 1  \quad\quad \text{with} \; x(s = 0) = 0, \tag{2}     \\
+	\f{du}{ds} & = x  \quad\quad \text{with} \; u(s = 0) = -2\xi. \tag{3}
+\end{align*}
+Consider equation (2)
+\begin{align*}
+	dx = ds \Rightarrow x = s + A .\tag{4}
+\end{align*}
+Next is equation (3)
+\begin{align*}
+	du = x ds \Rightarrow u = (s + A) ds \Rightarrow u = \f{s^{2}}{2} + s A + C \tag{5}
+\end{align*}
+Plugging $u$ into (1), this leads to
+\begin{align*}
+	dy = u ds = \left(\f{s^{2}}{2} + s A + C\right) ds \Rightarrow y = \f{s^{3}}{6} + \f{s^{2}A}{2} + C s +  B \tag{6}
+\end{align*}
+Applying initial condition to (4),(5),(6)
+\begin{align*}
+	\begin{cases}
+		x(s = 0) = 0 = A   \\
+		y(s = 0) = \xi = B \\
+		u(s = 0) = -2\xi = C
+	\end{cases}
+	\Rightarrow
+	\begin{cases}
+		A = 0   \\
+		B = \xi \\
+		C = -2\xi
+	\end{cases}
+\end{align*}
+We have
+\begin{align*}
+	x & = s                           \\
+	y & = \f{s^{3}}{6} - 2\xi s + \xi =  \f{s^{3}}{6} - (2s + 1) \xi \\
+	u & = \f{s^{2}}{2} - 2\xi
+\end{align*}
+Eliminating $\xi$, this leads to
+\begin{align*}
+	x & = s                                             \\
+	\xi & = \f{\frac{x^{3}}{6} - y}{2s + 1}                  \\
+	u & = \f{x^{2}}{2} - 2 \left( \f{\frac{x^{3}}{6} - y}{2 + 1} \right) \tag{7}
+\end{align*}
+Symplyfing the Eqn.(7), we have
+\begin{align*}
+	u(x,y) = \f{x^{2}}{2} - \f{x^{3}}{6x + 3} + \f{2y}{2x + 1}
+\end{align*}
+which is the solution of the PDE
+\section{Hàm Green để giải phương trình PDEs}
+\subsection{Heat equation}
+\begin{gather}
+	\partial_{t} \phi = D \nabla^{2} \phi \rightarrow \partial_{t} \phi - D \nabla^{2} \phi = 0
+\end{gather}
+trong đó $D$ là hệ số khuếch tán. Điều kiện biên
+\begin{equation}
+	\begin{aligned}
+		\phi(t =0) = f(\mathbf{x})\\
+		\lim\limits_{x \rightarrow 0} \phi(\mathbf{x} , t) = 0
+	\end{aligned}
+\end{equation}
+Phép biến đổi Fourier cho biến $x$ là
+\begin{gather}
+	\partial_{t} \tilde{\phi}(\mathbf{k},t) = -D \abs{\mathbf{k}}^{2} \tilde{\phi}(\mathbf{k},t)
+\end{gather}
+ta tính được
+\begin{gather}
+	\tilde{\phi}(\mathbf{k},t) = \tilde{f}(\mathbf{k}) e^{-D \abs{\mathbf{k}}^{2} t}
+\end{gather}
+Để tìm được $\phi$, ta sử dụng phép biến đổi Fourier ngược
+\begin{gather}
+	content...
+\end{gather}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
